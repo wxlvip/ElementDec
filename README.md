@@ -42,6 +42,10 @@ Element will stay with Vue 2.x
 
 For Vue 3.0, we recommend using [Element Plus](https://github.com/element-plus/element-plus) from the same team
 
+本项目是为了学习 Element 而创建，新增 docs 文档目录，将解构的理解更新在该文件夹下，并会在各文件中添加详细的注释，以便帮助新手理解源码。
+
+除了新增的部分说明文件外，其他大部分为 `Element-2.15.7` 版本的源码，仅供学习之用
+
 ## Links
 - Homepage and documentation
   - [International users](http://element.eleme.io/#/en-US)
