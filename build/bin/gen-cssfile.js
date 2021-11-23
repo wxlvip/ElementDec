@@ -1,5 +1,9 @@
+// 根据components.json，生成package/theme-chalk/index.scss文件，把所有组件的样式都导入到index.scss。
+// 其实是做了一个自动化导入操作，后面每次新增组件，就不用手动去引入新增组件的样式了。
+// 该文件就是处理全局引入时的一种方式 `import 'element-ui/lib/theme-chalk/index.css';`，将所有组件的样式都整合到一个文件中
 var fs = require('fs');
 var path = require('path');
+// 组件名称和路径数据
 var Components = require('../../components.json');
 var themes = [
   'theme-chalk'
