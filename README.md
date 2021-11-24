@@ -48,12 +48,10 @@ For Vue 3.0, we recommend using [Element Plus](https://github.com/element-plus/e
 
 
 ## 基本信息
-author:Gaby
+
 Element版本:element-2.15.7
 
-## 思想
-
-健壮、可扩展、解耦、易维护
+思想：健壮、可扩展、解耦、易维护
 
 ## 目录  
 ```
@@ -143,23 +141,23 @@ Element-2.15.7
 ├──README.md：说明文档
 └──yarn.lock：使用yarn进行包版本锁定
 ```
-Makefile 文件：
+
+>关于Makefile 文件：\
 Makefile 是一个适用于 C/C++ 的工具，较早作为工程化工具出现在 UNIX 系统中， 通过 make 命令来执行一系列的编译和连接操作。在拥有 make 环境的目录下， 如果存在一个 Makefile 文件。 那么输入 make 命令将会执行 Makefile 文件中的某个目标命令。
 [前端入门->makefile](https://segmentfault.com/a/1190000004437816#articleHeader11)
-
-在 .github 文件夹下的贡献指南中提到过，组件开发规范中的第一条：通过 make new 创建组件目录结构，包含测试代码、入口文件、文档。其中 make new 就是 make 命令中的一种。make 命令是一个工程化编译工具，而 Makefile 定义了一系列的规则来制定文件变异操作，常常使用 Linux 的同学应该不会对 Makefile 感到陌生。
-
-// Tip:
-// make new <component-name> [中文]
-// 1、将新建组件添加到components.json
-// 2、添加到index.scss
-// 3、添加到element-ui.d.ts
-// 4、创建package
-// 5、添加到nav.config.json
-
-这里我以make install为例简要说明下执行流程：
-
-1.执行 make 命令， 在该目录下找到 Makefile 文件。
+> 
+>在 .github 文件夹下的贡献指南中提到过，组件开发规范中的第一条：通过 make new 创建组件目录结构，包含测试代码、入口文件、文档。其中 make new 就是 make 命令中的一种。make 命令是一个工程化编译工具，而 Makefile 定义了一系列的规则来制定文件变异操作，常常使用 Linux 的同学应该不会对 Makefile 感到陌生。
+> 
+>Tip:\
+make new <component-name> [中文]\
+1、将新建组件添加到components.json\
+2、添加到index.scss\
+3、添加到element-ui.d.ts\
+4、创建package\
+5、添加到nav.config.json\
+> 
+>这里我以make install为例简要说明下执行流程：\
+1.执行 make 命令， 在该目录下找到 Makefile 文件。\
 2.找到 Makefile 文件中对应命令行参数的 install 目标。这里的目标就是 npm install
 
 
@@ -167,15 +165,15 @@ Makefile 是一个适用于 C/C++ 的工具，较早作为工程化工具出现�
 
 首先你需要 Node.js 4+，yarn 和 npm 3+。注意：我们使用 yarn 进行依赖版本的锁定，所以请不要使用 npm install 安装依赖。
 ```shell
-git clone git@github.com:ElemeFE/element.git
+git clone git@github.com:wxlvip/ElementDec.git
 npm run dev
+# or
+yarn dev
 
 # open http://localhost:8085
 ```
 
-> **Notice**: 修改 `examples/play/index.vue` 文件, 使用您贡献的组件, 然后运行`npm run dev:play`,访问 [http://localhost:8085](http://localhost:8085), 获取运行结果,更快更友好.
 
-使用以下命令打包:
 
 ```shell
 npm run dist
@@ -220,18 +218,21 @@ Vue.component(HelloWorld.name, HelloWorld);
 export default HelloWorld;
 ```
 src/main.vue 真实项目中写组件一定要构思和确定好，要可以扩展和新增功能，因为后期改动的成本很大，所以 涉及的三大块 props、event 和 slot 要认真思考
-```
-// src/main.vue
+```vue
 <template>
   <div class="el-hello-world">
-    Hello, <a href="#">{{ name }}</a>
+    Hello, <a :href="url" target="_blank">{{ name }}</a>
     <span><slot></slot></span>
   </div>
 </template>
 <script>
 export default {
   name: 'ElHelloWorld',
-  props: ['name'],
+  props: ['name', 'url'],
+  // props: {
+  //   name: String,
+  //   url: String
+  // },
   data() {
     return {};
   }
@@ -240,7 +241,7 @@ export default {
 ```
 
 3. 在packages/theme-chalk/src下添加 hello-world.scss,之后执行 `yarn build:file` 进行编译生成 css 文件
-```
+```css
 @charset "UTF-8";
 @import "common/var";
 @import "mixins/button";
@@ -294,7 +295,62 @@ describe.only('test HelloWorld', () => {
 因为单元测试太多了，我们只想测试自己的组件，所以上面的测试我加了only，这样就只会跑这个测试了，等开发完组件，要把这个干掉的。
 
 
-## 打包流程
+## 测试
+
+### 在文档中进行测试
+
+1. 可以在文档中 examples/docs/zh-CN/hello-world.md 中添加代码段直接使用组件进行测试，如果样式没有出来或者没有被解析，可能是组件书写存在错误的地方
+    ```html
+    <el-hello-world class="el-hello-world" name="world" url="https://www.baidu.com/">
+        我是新组件 hello-world 插槽内容
+    </el-hello-world>
+    <script>
+        export default {
+            data() {
+                return {
+                }
+            },
+            methods: {
+                onSubmit() {
+                    console.log('submit!');
+                }
+            }
+        }
+    </script>
+    ```
+2. 执行 `npm run dev` 命令，启动项目，过程较慢要有耐心
+3. 打开 `http://localhost:8085/#/zh-CN/` 文档主页，并切换到 `组件` 菜单，打开 `HelloWorld 你好世界` 组件页面，可观察到效果（完整路径为：http://localhost:8085/#/zh-CN/component/hello-world）
+
+### 管方提供测试方式
+
+在 `examples/play/index.vue` 中测试
+> 修改 `examples/play/index.vue` 文件, 在页面中直接使用你自定义的组件, 然后运行`npm run dev:play`,访问 [http://localhost:8085](http://localhost:8085), 获取运行结果,这种方式启动更快更友好.
+
+```vue
+<template>
+  <div style="margin: 20px;">
+    <el-input v-model="input" placeholder="请输入内容"></el-input>
+    <el-hello-world class="el-hello-world" name="world" url="https://www.wxlvip.com/">我是新组件 hello-world 插槽内容</el-hello-world>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        input: 'Hello Element UI!'
+      };
+    }
+  };
+</script>
+
+```
+
+## 打包
+
+使用以下命令打包:
+
+### 打包流程
 
 ![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/6/23/172df2c6a4ca6dd8~tplv-t2oaga2asx-watermark.awebp)
 
@@ -306,9 +362,7 @@ describe.only('test HelloWorld', () => {
 - http://localhost:8085
 
 
-代码安全，反爬虫、接口安全、防盗链、频繁调用则禁用IP设置成黑名单，然后人工审核
-https://blog.csdn.net/txyzqc/article/details/105409586/
-https://juejin.cn/post/6844904197863964685#heading-27
+
 
 
 
