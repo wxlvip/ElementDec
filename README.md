@@ -83,12 +83,45 @@ Element-2.15.7
 │   └── 89个文件夹 80种组件
 ├──src：存放入口文件和一些工具辅助函数\把所有的组件做一个统一处理，同时包含自定义指令、项目整体入口、组件国际化、组件 mixins、动画的封装和公共方法
 │   ├──directives:放置自定义指令，实现滚轮优化，鼠标点击优化
+│   │   ├──mousewheel.js:主要使用mousewheel.js（https://github.com/basilfx/normalize-wheel）来实现鼠标滚轮事件。应用在table组件中，如“固定表头”，“流体高度”中。
+│   │   └──repeat-click.js:就是“函数防抖”！主要用在InputNumber 计数器中，控制用户点击频率。请参考https://www.cnblogs.com/mengfangui/p/9515993.html。
 │   ├──locale：放置语言的配置文件，i18n国际化
 │   ├──mixins：Vue混合器，放置组件用的混合文件
+│   │   ├─emitter.js：广播和分发函数
+│   │   ├─focus.js：使dom元素获取焦点
+│   │   ├─locale.js：国际化输出
+│   │   └──migrating.js：主要目的是在浏览器控制台输出 element ui已经移除的一些属性
 │   ├──transitions：样式过渡效果，放置动画配置文件
 │   ├──utils：工具类包，放置用到工具函数文件
+│   │   ├─menu
+│   │   ├─popup
+│   │   ├─after-leave.js
+│   │   ├─aria-dialog.js
+│   │   ├─aria-utils.js
+│   │   ├─clickoutside.js:点击元素外面才会触发的事件
+│   │   ├─date.js:日期格式化js,修改自fecha：https://github.com/taylorhakes/fecha
+│   │   ├─date-util.js
+│   │   ├─dom.js:对dom元素进行操作，如hasClass，addClass，removeClass，getStyle，setStyle，on（绑定事件），off（解除事件）
+│   │   ├─merge.js
+│   │   ├─popper.js
+│   │   ├─resize-event.js
+│   │   ├─scroll-into-view.js
+│   │   ├─scrollbar-width.js
+│   │   ├─shared.js
+│   │   ├─types.js
+│   │   ├─util.js:定义一些常用函数：hasOwn，getValueByPath，valueEquals。
+│   │   ├─vdom.js:vnode判断，vodne获取
+│   │   └──vue-popper.js
 │   └──index.js :源码入口文件，组件注册入口，自动生成的。导入了 packages 下的所有组件;对外暴露了install方法，把所有的组件注册到Vue上面，并在Vue原型上挂载了一些全局变量和方法;最终将install方法、变量、方法导出
 ├──test：单元测试相关文件，这也是一个优秀的开源项目必备的
+│   ├── ssr                //
+│   └── unit               // 单元测试目录
+│       ├── coverage       // 单元测试覆盖率包
+│       ├── mocks
+│       ├── specs          // 测试用例源码包
+│       ├── index.js       // 测试入口
+│       ├── karma.conf.js  // karma配置文件
+│       └── utils.js       // 工具类
 ├──types：typescript文件包，类型声明文件
 │
 ├──.babelrc: babel 配置文件
@@ -237,7 +270,7 @@ export default {
 ```
 
 ### 添加测试
-在test/unit下创建hello-world.spec.js
+在test/unit/specs下创建hello-world.spec.js
 
 ```js
 import {createTest} from '../util';
