@@ -78,7 +78,7 @@ export default {
 `;
 
 delete Components.font;
-
+// 获取 components.json 文件中的key ['hello-world']
 var ComponentNames = Object.keys(Components);
 
 var includeComponentTemplate = [];
