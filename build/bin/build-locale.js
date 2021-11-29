@@ -2,10 +2,11 @@ var fs = require('fs');
 var save = require('file-save');
 var resolve = require('path').resolve;
 var basename = require('path').basename;
-var localePath = resolve(__dirname, '../../src/locale/lang');
+var localePath = resolve(__dirname, '../../src/locale/lang'); // 组件的多国语言配置
 var fileList = fs.readdirSync(localePath);
 
 var transform = function(filename, name, cb) {
+  // babel-core 的作用是把 js 代码分析成 ast，transform-es2015-modules-umd将编译ES6模块为UMD模式
   require('babel-core').transformFile(resolve(localePath, filename), {
     plugins: [
       'add-module-exports',

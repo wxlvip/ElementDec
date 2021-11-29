@@ -4,7 +4,7 @@ console.log();
 process.on('exit', () => {
   console.log();
 });
-
+// 参数校验
 if (!process.argv[2]) {
   console.error('[组件名]必填 - Please enter new component name');
   process.exit(1);
@@ -14,10 +14,16 @@ const path = require('path');
 const fs = require('fs');
 const fileSave = require('file-save');
 const uppercamelcase = require('uppercamelcase');
-const componentname = process.argv[2];
+// 获取命令行的参数
+// e.g. node new.js input 输入框
+// process.argv表示命令行的参数数组
+// 0是node，1是new.js，2和3就是后面两个参数
+const componentname = process.argv[2]; // 组件名
 const chineseName = process.argv[3] || componentname;
-const ComponentName = uppercamelcase(componentname);
+const ComponentName = uppercamelcase(componentname);// 转成驼峰表示
+// 组件所在的目录文件
 const PackagePath = path.resolve(__dirname, '../../packages', componentname);
+// 每个组件都会对外单独暴露一个install方法，因为Element支持按需加载。同时，每个组件名都会加上El前缀。所以我们使用Element组件时，经常是这样的el-xxx，这符合W3C的自定义HTML标签的规范（小写，并且包含一个短杠）。
 const Files = [
   {
     filename: 'index.js',
@@ -96,10 +102,12 @@ export declare class El${ComponentName} extends ElementUIComponent {
 
 // 添加到 components.json
 const componentsFile = require('../../components.json');
+// 检查components.json中是否已经存在同名组件
 if (componentsFile[componentname]) {
   console.error(`${componentname} 已存在.`);
   process.exit(1);
 }
+// componentsFile中写入新的组件键值对
 componentsFile[componentname] = `./packages/${componentname}/index.js`;
 fileSave(path.join(__dirname, '../../components.json'))
   .write(JSON.stringify(componentsFile, null, '  '), 'utf8')
