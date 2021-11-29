@@ -196,4 +196,12 @@
     @content
   }
 }
+// 新增改变样式前缀方法 $mtinamespace 变量在 packages/theme-chalk/src/mixins/config.scss 文件中配置
+@mixin mti($block) {
+  $B: $mtinamespace+'-'+$block !global;
+
+  .#{$B} {
+    @content;
+  }
+}
 

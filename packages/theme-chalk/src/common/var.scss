@@ -1,11 +1,11 @@
 @use "sass:math";
 /* Element Chalk Variables */
 
-// Special comment for theme configurator
-// type|skipAutoTranslation|Category|Order
-// skipAutoTranslation 1
+// Special comment for theme configurator 主题配置器的特别注释
+// type|skipAutoTranslation|Category|Order 类型|跳过自动翻译|类别|顺序
+// skipAutoTranslation 1 跳过自动翻译 1
 
-/* Transition
+/* Transition 过渡
 -------------------------- */
 $--all-transition: all .3s cubic-bezier(.645,.045,.355,1) !default;
 $--fade-transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) !default;
@@ -14,13 +14,13 @@ $--md-fade-transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opacity 3
 $--border-transition-base: border-color .2s cubic-bezier(.645,.045,.355,1) !default;
 $--color-transition-base: color .2s cubic-bezier(.645,.045,.355,1) !default;
 
-/* Color
+/* Color 色彩
 -------------------------- */
-/// color|1|Brand Color|0
+/// color|1|Brand Color|0 主要品牌色调 #409EFF
 $--color-primary: #409EFF !default;
-/// color|1|Background Color|4
+/// color|1|Background Color|4 背景色白色
 $--color-white: #FFFFFF !default;
-/// color|1|Background Color|4
+/// color|1|Background Color|4 背景色黑色
 $--color-black: #000000 !default;
 $--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default; /* 53a8ff */
 $--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default; /* 66b1ff */
@@ -31,13 +31,14 @@ $--color-primary-light-6: mix($--color-white, $--color-primary, 60%) !default; /
 $--color-primary-light-7: mix($--color-white, $--color-primary, 70%) !default; /* c6e2ff */
 $--color-primary-light-8: mix($--color-white, $--color-primary, 80%) !default; /* d9ecff */
 $--color-primary-light-9: mix($--color-white, $--color-primary, 90%) !default; /* ecf5ff */
-/// color|1|Functional Color|1
+//功能色
+/// color|1|Functional Color|1 成功 #67C23A
 $--color-success: #67C23A !default;
-/// color|1|Functional Color|1
+/// color|1|Functional Color|1 警告 #E6A23C
 $--color-warning: #E6A23C !default;
-/// color|1|Functional Color|1
+/// color|1|Functional Color|1 危险 #F56C6C
 $--color-danger: #F56C6C !default;
-/// color|1|Functional Color|1
+/// color|1|Functional Color|1 信息 #909399
 $--color-info: #909399 !default;
 
 $--color-success-light: mix($--color-white, $--color-success, 80%) !default;
@@ -49,6 +50,7 @@ $--color-success-lighter: mix($--color-white, $--color-success, 90%) !default;
 $--color-warning-lighter: mix($--color-white, $--color-warning, 90%) !default;
 $--color-danger-lighter: mix($--color-white, $--color-danger, 90%) !default;
 $--color-info-lighter: mix($--color-white, $--color-info, 90%) !default;
+// 文本色
 /// color|1|Font Color|2
 $--color-text-primary: #303133 !default;
 /// color|1|Font Color|2
@@ -57,6 +59,7 @@ $--color-text-regular: #606266 !default;
 $--color-text-secondary: #909399 !default;
 /// color|1|Font Color|2
 $--color-text-placeholder: #C0C4CC !default;
+// 边框色
 /// color|1|Border Color|3
 $--border-color-base: #DCDFE6 !default;
 /// color|1|Border Color|3
@@ -98,11 +101,11 @@ $--box-shadow-dark: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .12) !de
 /// boxShadow|1|Shadow|1
 $--box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !default;
 
-/* Fill
+/* Fill 填充
 -------------------------- */
 $--fill-base: $--color-white !default;
 
-/* Typography
+/* Typography 印刷
 -------------------------- */
 $--font-path: 'fonts' !default;
 $--font-display: 'auto' !default;
@@ -127,11 +130,11 @@ $--font-line-height-primary: 24px !default;
 /// fontLineHeight|1|Line Height|2
 $--font-line-height-secondary: 16px !default;
 $--font-color-disabled-base: #bbb !default;
-/* Size
+/* Size 基础字体大小
 -------------------------- */
 $--size-base: 14px !default;
 
-/* z-index
+/* z-index 层高
 -------------------------- */
 $--index-normal: 1 !default;
 $--index-top: 1000 !default;
@@ -143,12 +146,12 @@ $--disabled-fill-base: $--background-color-base !default;
 $--disabled-color-base: $--color-text-placeholder !default;
 $--disabled-border-base: $--border-color-light !default;
 
-/* Icon
+/* Icon 图标色调
 -------------------------- */
 $--icon-color: #666 !default;
 $--icon-color-base: $--color-info !default;
 
-/* Checkbox
+/* Checkbox 多选框
 -------------------------- */
 /// fontSize||Font|1
 $--checkbox-font-size: 14px !default;
@@ -213,7 +216,7 @@ $--checkbox-button-checked-border-color: $--color-primary !default;
 
 
 
-/* Radio
+/* Radio 单选按钮
 -------------------------- */
 /// fontSize||Font|1
 $--radio-font-size: $--font-size-base !default;
@@ -277,7 +280,7 @@ $--radio-button-checked-font-color: $--color-white !default;
 $--radio-button-checked-border-color: $--color-primary !default;
 $--radio-button-disabled-checked-fill: $--border-color-extra-light !default;
 
-/* Select
+/* Select 下拉选择框
 -------------------------- */
 $--select-border-color-hover: $--border-color-hover !default;
 $--select-disabled-border: $--disabled-border-base !default;
@@ -315,7 +318,7 @@ $--select-dropdown-padding: 6px 0 !default;
 $--select-dropdown-empty-padding: 10px 0 !default;
 $--select-dropdown-border: solid 1px $--border-color-light !default;
 
-/* Alert
+/* Alert 提示框
 -------------------------- */
 $--alert-padding: 8px 16px !default;
 /// borderRadius||Border|2
@@ -339,7 +342,7 @@ $--alert-icon-size: 16px !default;
 /// height||Other|4
 $--alert-icon-large-size: 28px !default;
 
-/* MessageBox
+/* MessageBox 消息框
 -------------------------- */
 /// color||Color|0
 $--messagebox-title-color: $--color-text-primary !default;
@@ -363,7 +366,7 @@ $--messagebox-warning-color: $--color-warning !default;
 /// color||Color|0
 $--messagebox-danger-color: $--color-danger !default;
 
-/* Message
+/* Message 消息
 -------------------------- */
 $--message-shadow: $--box-shadow-base !default;
 $--message-min-width: 380px !default;
@@ -385,7 +388,7 @@ $--message-warning-font-color: $--color-warning !default;
 /// color||Color|0
 $--message-danger-font-color: $--color-danger !default;
 
-/* Notification
+/* Notification 通知
 -------------------------- */
 $--notification-width: 330px !default;
 /// padding||Spacing|3
@@ -421,7 +424,7 @@ $--notification-warning-icon-color: $--color-warning !default;
 /// color||Color|0
 $--notification-danger-icon-color: $--color-danger !default;
 
-/* Input
+/* Input 输入框
 -------------------------- */
 $--input-font-size: $--font-size-base !default;
 /// color||Color|0
@@ -469,7 +472,7 @@ $--input-mini-font-size: 12px !default;
 /// height||Other|4
 $--input-mini-height: 28px !default;
 
-/* Cascader
+/* Cascader 级联选择
 -------------------------- */
 /// color||Color|0
 $--cascader-menu-font-color: $--color-text-regular !default;
@@ -485,7 +488,7 @@ $--cascader-node-color-disabled:$--color-text-placeholder !default;
 $--cascader-color-empty:$--color-text-placeholder !default;
 $--cascader-tag-background: #f0f2f5;
 
-/* Group
+/* Group 组
 -------------------------- */
 $--group-option-flex: 0 0 math.div(1, 5) * 100% !default;
 $--group-option-offset-bottom: 12px !default;
@@ -494,7 +497,7 @@ $--group-title-color: $--color-black !default;
 $--group-title-font-size: $--font-size-base !default;
 $--group-title-width: 66px !default;
 
-/* Tab
+/* Tab 标签页
 -------------------------- */
 $--tab-font-size: $--font-size-base !default;
 $--tab-border-line: 1px solid #e4e4e4 !default;
@@ -507,7 +510,7 @@ $--tab-vertical-header-width: 90px !default;
 $--tab-vertical-header-count-color: $--color-white !default;
 $--tab-vertical-header-count-fill: $--color-text-secondary !default;
 
-/* Button
+/* Button 按钮
 -------------------------- */
 /// fontSize||Font|1
 $--button-font-size: $--font-size-base !default;
@@ -593,11 +596,11 @@ $--button-hover-tint-percent: 20% !default;
 $--button-active-shade-percent: 10% !default;
 
 
-/* cascader
+/* cascader 级联高度
 -------------------------- */
 $--cascader-height: 200px !default;
 
-/* Switch
+/* Switch 开关按钮
 -------------------------- */
 /// color||Color|0
 $--switch-on-color: $--color-primary !default;
@@ -613,7 +616,7 @@ $--switch-height: 20px !default;
 // height||Other|4
 $--switch-button-size: 16px !default;
 
-/* Dialog
+/* Dialog 对话框
 -------------------------- */
 $--dialog-background-color: $--color-white !default;
 $--dialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
@@ -626,7 +629,7 @@ $--dialog-font-line-height: $--font-line-height-primary !default;
 /// padding||Spacing|3
 $--dialog-padding-primary: 20px !default;
 
-/* Table
+/* Table 表格
 -------------------------- */
 /// color||Color|0
 $--table-border-color: $--border-color-lighter !default;
@@ -642,7 +645,7 @@ $--table-current-row-background-color: $--color-primary-light-9 !default;
 $--table-header-background-color: $--color-white !default;
 $--table-fixed-box-shadow: 0 0 10px rgba(0, 0, 0, .12) !default;
 
-/* Pagination
+/* Pagination 分页
 -------------------------- */
 /// fontSize||Font|1
 $--pagination-font-size: 13px !default;
@@ -664,14 +667,14 @@ $--pagination-button-disabled-background-color: $--color-white !default;
 /// color||Color|0
 $--pagination-hover-color: $--color-primary !default;
 
-/* Popup
+/* Popup 气泡
 -------------------------- */
 /// color||Color|0
 $--popup-modal-background-color: $--color-black !default;
 /// opacity||Other|1
 $--popup-modal-opacity: 0.5 !default;
 
-/* Popover
+/* Popover 弹出框
 -------------------------- */
 /// color||Color|0
 $--popover-background-color: $--color-white !default;
@@ -688,7 +691,7 @@ $--popover-title-font-size: 16px !default;
 /// color||Color|0
 $--popover-title-font-color: $--color-text-primary !default;
 
-/* Tooltip
+/* Tooltip 文字提示
 -------------------------- */
 /// color|1|Color|0
 $--tooltip-fill: $--color-text-primary !default;
@@ -702,7 +705,7 @@ $--tooltip-arrow-size: 6px !default;
 /// padding||Spacing|3
 $--tooltip-padding: 10px !default;
 
-/* Tag
+/* Tag 标签
 -------------------------- */
 /// color||Color|0
 $--tag-info-color: $--color-info !default;
@@ -719,7 +722,7 @@ $--tag-font-size: 12px !default;
 $--tag-border-radius: 4px !default;
 $--tag-padding: 0 10px !default;
 
-/* Tree
+/* Tree 树形控件
 -------------------------- */
 /// color||Color|0
 $--tree-node-hover-background-color: $--background-color-base !default;
@@ -728,13 +731,13 @@ $--tree-font-color: $--color-text-regular !default;
 /// color||Color|0
 $--tree-expand-icon-color: $--color-text-placeholder !default;
 
-/* Dropdown
+/* Dropdown 下拉菜单
 -------------------------- */
 $--dropdown-menu-box-shadow: $--box-shadow-light !default;
 $--dropdown-menuItem-hover-fill: $--color-primary-light-9 !default;
 $--dropdown-menuItem-hover-color: $--link-color !default;
 
-/* Badge
+/* Badge 标记
 -------------------------- */
 /// color||Color|0
 $--badge-background-color: $--color-danger !default;
@@ -746,7 +749,7 @@ $--badge-padding: 6px !default;
 /// height||Other|4
 $--badge-size: 18px !default;
 
-/* Card
+/* Card 卡片
 --------------------------*/
 /// color||Color|0
 $--card-border-color: $--border-color-lighter !default;
@@ -754,7 +757,7 @@ $--card-border-radius: 4px !default;
 /// padding||Spacing|3
 $--card-padding: 20px !default;
 
-/* Slider
+/* Slider 滑块
 --------------------------*/
 /// color||Color|0
 $--slider-main-background-color: $--color-primary !default;
@@ -772,13 +775,13 @@ $--slider-button-size: 16px !default;
 $--slider-button-wrapper-size: 36px !default;
 $--slider-button-wrapper-offset: -15px !default;
 
-/* Steps
+/* Steps 步骤条
 --------------------------*/
 $--steps-border-color: $--disabled-border-base !default;
 $--steps-border-radius: 4px !default;
 $--steps-padding: 20px !default;
 
-/* Menu
+/* Menu 菜单
 --------------------------*/
 /// fontSize||Font|1
 $--menu-item-font-size: $--font-size-base !default;
@@ -788,7 +791,7 @@ $--menu-item-font-color: $--color-text-primary !default;
 $--menu-background-color: $--color-white !default;
 $--menu-item-hover-fill: $--color-primary-light-9 !default;
 
-/* Rate
+/* Rate 评分
 --------------------------*/
 $--rate-height: 20px !default;
 /// fontSize||Font|1
@@ -799,7 +802,7 @@ $--rate-icon-size: 18px !default;
 $--rate-icon-margin: 6px !default;
 $--rate-icon-color: $--color-text-placeholder !default;
 
-/* DatePicker
+/* DatePicker 日期选择器
 --------------------------*/
 $--datepicker-font-color: $--color-text-regular !default;
 /// color|1|Color|0
@@ -819,19 +822,19 @@ $--datepicker-active-color: $--color-primary !default;
 $--datepicker-hover-font-color: $--color-primary !default;
 $--datepicker-cell-hover-color: #fff !default;
 
-/* Loading
+/* Loading 加载
 --------------------------*/
 /// height||Other|4
 $--loading-spinner-size: 42px !default;
 /// height||Other|4
 $--loading-fullscreen-spinner-size: 50px !default;
 
-/* Scrollbar
+/* Scrollbar 滚动条滑块
 --------------------------*/
 $--scrollbar-background-color: rgba($--color-text-secondary, .3) !default;
 $--scrollbar-hover-background-color: rgba($--color-text-secondary, .5) !default;
 
-/* Carousel
+/* Carousel 走马灯
 --------------------------*/
 /// fontSize||Font|1
 $--carousel-arrow-font-size: 12px !default;
@@ -846,7 +849,7 @@ $--carousel-indicator-padding-horizontal: 4px !default;
 $--carousel-indicator-padding-vertical: 12px !default;
 $--carousel-indicator-out-color: $--border-color-hover !default;
 
-/* Collapse
+/* Collapse 折叠面板
 --------------------------*/
 /// color||Color|0
 $--collapse-border-color: $--border-color-lighter !default;
@@ -865,7 +868,7 @@ $--collapse-content-font-size: 13px !default;
 /// color||Color|0
 $--collapse-content-font-color: $--color-text-primary !default;
 
-/* Transfer
+/* Transfer 穿梭框
 --------------------------*/
 $--transfer-border-color: $--border-color-lighter !default;
 $--transfer-border-radius: $--border-radius-base !default;
@@ -884,25 +887,25 @@ $--transfer-item-height: 30px !default;
 /// height||Other|4
 $--transfer-filter-height: 32px !default;
 
-/* Header
+/* Header 顶栏
   --------------------------*/
 $--header-padding: 0 20px !default;
 
-/* Footer
+/* Footer 底栏
 --------------------------*/
 $--footer-padding: 0 20px !default;
 
-/* Main
+/* Main 主体
 --------------------------*/
 $--main-padding: 20px !default;
 
-/* Timeline
+/* Timeline 时间线
 --------------------------*/
 $--timeline-node-size-normal: 12px !default;
 $--timeline-node-size-large: 14px !default;
 $--timeline-node-color: $--border-color-light !default;
 
-/* Backtop
+/* Backtop 返回顶部
 --------------------------*/
 /// color||Color|0
 $--backtop-background-color: $--color-white !default;
@@ -911,7 +914,7 @@ $--backtop-font-color: $--color-primary !default;
 /// color||Color|0
 $--backtop-hover-background-color: $--border-color-extra-light !default;
 
-/* Link
+/* Link 链接
 --------------------------*/
 /// fontSize||Font|1
 $--link-font-size: $--font-size-base !default;
@@ -933,7 +936,7 @@ $--link-warning-font-color: $--color-warning !default;
 $--link-danger-font-color: $--color-danger !default;
 /// color||Color|0
 $--link-info-font-color: $--color-info !default;
-/* Calendar
+/* Calendar 日历
 --------------------------*/
 /// border||Other|4
 $--calendar-border: $--table-border !default;
@@ -941,12 +944,12 @@ $--calendar-border: $--table-border !default;
 $--calendar-selected-background-color: #F2F8FE !default;
 $--calendar-cell-width: 85px !default;
 
-/* Form
+/* Form 表单
 -------------------------- */
 /// fontSize||Font|1
 $--form-label-font-size: $--font-size-base !default;
 
-/* Avatar
+/* Avatar 头像
 --------------------------*/
 /// color||Color|0
 $--avatar-font-color: #fff !default;
@@ -965,30 +968,30 @@ $--avatar-medium-size: 36px !default;
 /// size|1|Avatar Size|3
 $--avatar-small-size: 28px !default;
 
-/* Empty
+/* Empty 空状态
 -------------------------- */
 $--empty-padding: 40px 0 !default;
 $--empty-image-width: 160px !default;
 $--empty-description-margin-top: 20px !default;
 $--empty-bottom-margin-top: 20px !default;
 
-/* Descriptions
+/* Descriptions 描述列表
 -------------------------- */
 $--descriptions-header-margin-bottom: 20px !default;
 $--descriptions-title-font-size: 16px !default;
 $--descriptions-table-border: 1px solid $--border-color-lighter !default;
 $--descriptions-item-bordered-label-background: #fafafa !default;
 
-/* Skeleton 
+/* Skeleton 骨架屏
 --------------------------*/
 $--skeleton-color: #f2f2f2 !default;
 $--skeleton-to-color: #e6e6e6 !default;
 
-/* Svg
+/* Svg Svg图标
 --------------- */
 $--svg-monochrome-grey: #DCDDE0 !default;
 
-/* Result
+/* Result 结果
 -------------------------- */
 $--result-padding: 40px 30px !default;
 $--result-icon-font-size: 64px !default;
