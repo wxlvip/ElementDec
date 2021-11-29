@@ -9,7 +9,7 @@
 
 :::demo 在 Hello World组件中，包括 name、url 属性
 ```html
-<el-hello-world class="el-hello-world" name="world" url="https://www.baidu.com/">我是新组件 hello-world 插槽内容</el-hello-world>
+<mti-hello-world class="el-hello-world" name="world" url="https://www.baidu.com/">我是新组件 hello-world 插槽内容</mti-hello-world>
 <script>
   export default {
     data() {
