@@ -42,16 +42,22 @@ Element will stay with Vue 2.x
 
 For Vue 3.0, we recommend using [Element Plus](https://github.com/element-plus/element-plus) from the same team
 
-本项目是为了学习 Element 而创建，新增 docs 文档目录，将解构的理解更新在该文件夹下，并会在各文件中添加详细的注释，以便帮助新手理解源码。
 
-除了新增的部分说明文件外，其他大部分为 `Element-2.15.7` 版本的源码，仅供学习之用
-
-
-## 基本信息
+## 基本说明
 
 Element版本:element-2.15.7
 
 思想：健壮、可扩展、解耦、易维护
+
+官方文档：[https://element.eleme.cn/#/zh-CN](https://element.eleme.cn/#/zh-CN)
+
+Github地址：[https://github.com/ElemeFE/element](https://github.com/ElemeFE/element)
+
+>说明：Element UI Deconstruction 项目是为了学习 Element 而创建，新增 docs 文档目录，将解构的理解更新在该文件夹下，并会在各文件中添加详细的注释，以便帮助新手理解源码。
+>
+>除了新增的部分说明文件外，其他大部分为 `Element-2.15.7` 版本的源码，仅供学习之用。
+> 
+>由于 element 官方也在维护组件库，代码可能会更新，因此该说明文档的代码难免会与最新源码有出入，所以我这里注明了版本号，大家注意下即可。
 
 ## 目录  
 ```
@@ -346,13 +352,164 @@ describe.only('test HelloWorld', () => {
 
 ```
 
+### 本地环境测试
+
+将项目通过 `npm run dist` 命令进行打包，将在根目录生成的 lib 文件，替换掉项目中的 `node_modules\element-ui\lib` 文件，重启项目即可直接在项目中使用并调试新增组件。(本测试方法及 `npm run dist` 命令存在的问题，在下面打包环节有有介绍)
+
+
+## 样式
+
+### 基本说明
+- element 样式用的是 sass, 文件后缀为 `scss`,样式文件存放路径为 `packages/theme-chalk/src` 样式名称为各组件名称，例如：hello-world.scss
+- 公共样式配置是在 `packages/theme-chalk/src/common/var.scss` 文件中，包含色彩、背景色、边框以及其他组件的公共样式的配置。
+- mixins 变量配置文件：`packages/theme-chalk/src/mixins/config.scss`，其中，样式前缀 `el` 的配置也在其中
+- mixins 函数配置文件：`packages/theme-chalk/src/mixins/mixins.scss`，sass 的 mixin 函数可以在该文件中进行定义
+
+element的样式：
+```scss
+@include when(disabled) {
+  .el-input__inner {
+      background-color: $--input-disabled-fill;
+      border-color: $--input-disabled-border;
+      color: $--input-disabled-color;
+      cursor: not-allowed;
+
+      &::placeholder {
+        color: $--input-disabled-placeholder-color;
+      }
+    }
+ 
+    .el-input__icon {
+      cursor: not-allowed;
+    }
+}
+```
+在看下最后编译的class命名：
+```css
+.el-input--medium .el-input__inner {
+   height: 36px;
+   line-height: 36px;
+}
+.el-input--suffix .el-input__inner {
+    padding-right: 30px;
+}
+```
+可以看出命名规则是BEM 命名规范（ [了解更多](https://zhuanlan.zhihu.com/p/33188830) ）B(代表块)__E(代表元素)--M(代表修饰符)
+
+### 样式前缀
+
+`el-` 前缀所在配置文件路径 `packages/theme-chalk/src/mixins/config.scss` 部分样式是直接写在scss中写死的，部分是通过 `packages/theme-chalk/src/mixins/mixins.scss` 中的 b 函数更改的
+为了避免之前 Element 原有样式出问题，最好是新增一个函数和前缀配置，进行更改新增css代码部分的前缀。保证原有组件的写法与样式使用Element的规范，新增组件启用自己定义的规范，以便向前兼容。
+
+
+
+
+
+
+
+
+### 色调
+
+全局色调配置文件路径 `packages/theme-chalk/src/common/var.scss` 在该文件中可以配置包括但不限于：
+
+主要品牌色：primary
+
+背景色：white、black、primary-light-1...(1-9)...primary-light-9
+
+辅助功能场景色：success(成功)、warning(警告)、danger(危险)、info(信息)、success-light、warning-light、danger-light、info-light、success-lighter、warning-lighter、danger-lighter、info-lighter
+
+其他还有 文本色、边框色等，各组件基础样式也是在该文件中进行配置
+
+## 组件
+
+1. 修改组件安装前缀
+
+```
+<el-hello-world>我是新组件 hello-world 插槽内容</el-hello-world>
+// 转换成
+<mti-hello-world>我是新组件 hello-world 插槽内容</mti-hello-world>
+```
+```
+// 需要将 组件的 name 属性由 ElHelloWorld 改为 MtiHelloWorld
+<script>
+export default {
+  name: 'ElHelloWorld',
+  props: {
+     name: String,
+     url: String
+  },
+  data() {
+    return {};
+  }
+};
+</script>
+// 修改后
+<script>
+export default {
+  name: 'MtiHelloWorld',
+  props: {
+     name: String,
+     url: String
+  },
+  data() {
+    return {};
+  }
+};
+</script>
+```
+
+
+
+
+
 ## 打包
 
 使用以下命令打包:
+```shell
+"dist": "npm run clean && npm run build:file && npm run lint && webpack --config build/webpack.conf.js && webpack --config build/webpack.common.js && webpack --config build/webpack.component.js && npm run build:utils && npm run build:umd && npm run build:theme"
+```
+
+直接执行 `npm run dist` 命令会卡在 webpack 打包这一步执行不下去，将命令拆分开，单独执行就可以。该命令生成的文件均在根目录下的 `lib` 文件夹下
+
+- `npm run clean` 清空 lib 文件夹
+- `npm run build:file`
+- `npm run lint` 使用 Eslint 检查代码
+- `webpack --config build/webpack.conf.js` 打包生成入口文件 `index.js`
+- `webpack --config build/webpack.common.js` 打包生成 `element-ui.common.js` 文件
+- `webpack --config build/webpack.component.js` 打包生成各组件单独的文件，便于按需加载使用
+- `npm run build:utils` 生成 lib 下的 directives、locale、mixins、theme-chalk、transitions、utils
+- `npm run build:umd` 生成 lib 下的 umd 文件夹。
+- `npm run build:theme` 生成 lib 下的 theme-chalk
+
+对已打包文件进行测试，可以将打包好的文件，替换掉项目中的 `node_modules\element-ui\lib` 文件，重启项目即可直接在项目中使用并调试新增组件。
+
+发布的包（即项目中下载的 node_modules\element-ui 目录下的文件）的目录结构如下：
+
+```
+element-ui
+├──lib // 通过 dist 命令打包生成的文件夹
+├──packages // 组件源码包
+├──src // 入口文件和一些工具辅助函数
+├──types // TS 类型声明文件
+├──CHANGELOG.en-US.md
+├──CHANGELOG.es.md
+├──CHANGELOG.fr-FR.md
+├──CHANGELOG.zh-CN.md
+├──LICENSE // 开源许可证
+├──package.json // npm 核心包管理文件
+└──README.md // 说明文档
+```
 
 ### 打包流程
 
 ![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/6/23/172df2c6a4ca6dd8~tplv-t2oaga2asx-watermark.awebp)
+
+
+## 发布
+
+1. 注册 npm 账号
+2. 打包文件，将打包文件上传
+
 
 
 ## 其他
@@ -360,12 +517,89 @@ describe.only('test HelloWorld', () => {
 - 需要node.js4+，因为使用yarn锁定以来版本，所以这里官方推荐使用yarn进行包管理，而不是npm
 - 出于兼容性和文件大小的考虑，我们的巴别塔配置只导入了preset-2015，所以不推荐使用ES2015中的Array.Prototype.find和Object.Assign这样的接口。\
 - http://localhost:8085
+- Element-Plus：[https://github.com/element-plus/element-plus](https://github.com/element-plus/element-plus)
+- vue-element-admin：[https://github.com/PanJiaChen/vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
 
 
 
+1.打包之后的 lib/element-ui.common.js 文件中 引用的 element-ui路径跟新，创建的npm包名不一致，需要替换更改
+2. 组件 cascader-panel.js 中引入的其他包的路径 也为 element-ui
+./node_modules/wxl-ui/lib/cascader-panel.js
+Module not found: Error: Can't resolve 'element-ui/lib/checkbox' in 'D:\www\wxl\node_modules\wxl-ui\lib'
+3.组件 select.js 同上16处
+./node_modules/wxl-ui/lib/select.js
+Module not found: Error: Can't resolve 'element-ui/lib/input' in 'D:\www\wxl\node_modules\wxl-ui\lib'
+4.组件 input-number.js 同上5处
+./node_modules/wxl-ui/lib/input-number.js
+Module not found: Error: Can't resolve 'element-ui/lib/input' in 'D:\www\wxl\node_modules\wxl-ui\lib'
+8.lib/input.js 同上8处
+./node_modules/wxl-ui/lib/input.js
+Module not found: Error: Can't resolve 'element-ui/lib/mixins/emitter' in 'D:\www\wxl\node_modules\wxl-ui\lib'
+9.lib/checkbox.js 同上2处
+./node_modules/wxl-ui/lib/checkbox.js
+Module not found: Error: Can't resolve 'element-ui/lib/mixins/emitter' in 'D:\www\wxl\node_modules\wxl-ui\lib'
+10.lib/checkbox-group.js 同上2处
+./node_modules/wxl-ui/lib/checkbox-group.js
+Module not found: Error: Can't resolve 'element-ui/lib/mixins/emitter' in 'D:\www\wxl\node_modules\wxl-ui\lib'
+11.lib/option.js 同上4处
+./node_modules/wxl-ui/lib/option.js
+Module not found: Error: Can't resolve 'element-ui/lib/mixins/emitter' in 'D:\www\wxl\node_modules\wxl-ui\lib'
+12.lib/radio.js  同上2处
+./node_modules/wxl-ui/lib/radio.js
+Module not found: Error: Can't resolve 'element-ui/lib/mixins/emitter' in 'D:\www\wxl\node_modules\wxl-ui\lib'
+13.lib/scrollbar.js 同上8处
+./node_modules/wxl-ui/lib/scrollbar.js
+Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib'
+14.lib/tooltip.js 同上6处
+./node_modules/wxl-ui/lib/tooltip.js
+Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib'
+15.lib/popover.js 同上6处
+./node_modules/wxl-ui/lib/popover.js
+Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib'
 
 
 
+5.lib/mixins/locale.js 同上1处
+./node_modules/wxl-ui/lib/mixins/locale.js
+Module not found: Error: Can't resolve 'element-ui/lib/locale' in 'D:\www\wxl\node_modules\wxl-ui\lib\mixins'
+23.lib/mixins/migrating.js 同上2处
+./node_modules/wxl-ui/lib/mixins/migrating.js
+Module not found: Error: Can't resolve 'element-ui/lib/utils/util' in 'D:\www\wxl\node_modules\wxl-ui\lib\mixins'
 
+
+6.lib/utils/date-util.js 同上2处
+./node_modules/wxl-ui/lib/utils/date-util.js
+Module not found: Error: Can't resolve 'element-ui/lib/locale' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils'
+17.lib/utils/clickoutside.js 同上1处
+./node_modules/wxl-ui/lib/utils/clickoutside.js
+Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils'
+18.lib/utils/popup/index.js 同上2处
+./node_modules/wxl-ui/lib/utils/popup/index.js
+Module not found: Error: Can't resolve 'element-ui/lib/utils/merge' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils\popup'
+19.lib/utils/popup/popup-manager.js 同上1处
+./node_modules/wxl-ui/lib/utils/popup/popup-manager.js
+Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils\popup'
+20.lib/utils/vue-popper.js 同上1处
+./node_modules/wxl-ui/lib/utils/vue-popper.js
+Module not found: Error: Can't resolve 'element-ui/lib/utils/popup' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils'
+21.lib/utils/util.js 同上1处
+./node_modules/wxl-ui/lib/utils/util.js
+Module not found: Error: Can't resolve 'element-ui/lib/utils/types' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils'
+24.lib/utils/vdom.js 同上1处
+./node_modules/wxl-ui/lib/utils/vdom.js
+Module not found: Error: Can't resolve 'element-ui/lib/utils/util' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils'
+
+
+7.lib/locale/index.js 同上1处
+./node_modules/wxl-ui/lib/locale/index.js
+Module not found: Error: Can't resolve 'element-ui/lib/locale/lang/zh-CN' in 'D:\www\wxl\node_modules\wxl-ui\lib\locale'
+22.lib/locale/format.js 同上1处
+./node_modules/wxl-ui/lib/locale/format.js
+Module not found: Error: Can't resolve 'element-ui/lib/utils/util' in 'D:\www\wxl\node_modules\wxl-ui\lib\locale'
+
+
+16.lib/transitions/collapse-transition.js 同上1处
+./node_modules/wxl-ui/lib/transitions/collapse-transition.js
+Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib\transitions'
 
 

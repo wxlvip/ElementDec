@@ -1,5 +1,5 @@
 ### name
-`"name": "element-ui"` 项目名称c
+`"name": "element-ui"` 项目名称
 
 ### version
 `"version": "2.15.7"` 项目版本号
@@ -141,7 +141,12 @@
 `eslint src/**/* test/**/* packages/**/* build/**/* --quiet` 代码检查:使用 eslint 检测 src、test、packages、build 下的所有文件
 
 #### pub
+
 `"pub": "npm run bootstrap && sh build/git-release.sh && sh build/release.sh && node build/bin/gen-indices.js"`
+
+主要是通过运行一系列的 bash 脚本，实现了代码的提交、合并、版本管理、npm 发布、官网发布等，让整个发布流程自动化完成，脚本具体内容感兴趣的同学可自行查看。
+
+
 
 #### test
 `"test": "npm run lint && npm run build:theme && cross-env CI_ENV=/dev/ BABEL_ENV=test karma start test/unit/karma.conf.js --single-run"`
