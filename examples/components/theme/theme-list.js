@@ -1,7 +1,12 @@
+// 存放主题数据 name:主题名称; author:作者;theme:主题配色值
 export const themeList = [
   {
     name: 'Element',
     author: 'Element',
+    theme: '{"global":{"$--color-primary":"#409EFF"},"local":{}}'
+  }, {
+    name: '傻白甜主题',
+    author: 'Gaby',
     theme: '{"global":{"$--color-primary":"#409EFF"},"local":{}}'
   }
 ];

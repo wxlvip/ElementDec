@@ -1,6 +1,8 @@
 <template>
+<!-- 主题配置右侧编辑器顶部部分 -->
   <div class="configurator-action">
       <div class="action-group">
+        <!-- 撤销 -->
         <el-tooltip :content="getActionDisplayName('undo')">
           <img 
             src="../../assets/images/icon-undo.svg"
@@ -8,6 +10,7 @@
             :class="{ 'active': userConfigHistory.length > 0 }"
           />
         </el-tooltip>
+        <!-- 重做 -->
         <el-tooltip :content="getActionDisplayName('redo')">
           <img 
             src="../../assets/images/icon-redo.svg"
@@ -16,6 +19,7 @@
           />
         </el-tooltip>
         <div class="button-group">
+          <!-- 重置 -->
           <el-button 
             class="reset"
             type="primary" 
@@ -26,6 +30,7 @@
           >
             {{getActionDisplayName('reset-theme')}}
           </el-button>
+          <!-- 下载 -->
           <el-button 
             class="download"
             type="primary" 
@@ -38,6 +43,7 @@
           </el-button>
         </div>
       </div>
+      <!-- 右侧组件主题配置下拉菜单 -->
       <el-select v-model="selectedComponent" class="selector">
         <el-option
           v-for="item in selectOptions"

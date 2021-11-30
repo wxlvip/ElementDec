@@ -1,4 +1,5 @@
 <template>
+<!-- 主题配置右侧编辑器列可滚动配置参数的列表部分 -->
   <div class="editor-main" ref="mainPanel">
     <!-- <span>{{configName}}</span> -->
     <div v-for="(config, key) in configByOrder" :key="key">
@@ -80,6 +81,7 @@ export default {
     }
   },
   methods: {
+    // 选择不同的组件类型，则返回不同的组件
     editorComponent(type) {
       switch (type) {
         case 'color':
@@ -98,6 +100,7 @@ export default {
           return simpleTextEditor;
       }
     },
+    // 字传父 触发收集数据的方法
     onChange(e) {
       this.$emit('onChange', e);
     },

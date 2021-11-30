@@ -86,6 +86,7 @@ export default {
       this.$refs.colorPicker && this.$refs.colorPicker.handleTrigger();
     },
     onPickerChange(e) {
+      // mixin 中的方法
       this.onChange(e.variable || e);
     }
   }

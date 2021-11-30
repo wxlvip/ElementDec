@@ -36,7 +36,7 @@ export const getStyleDisplayValue = (displayValue, global) => {
   }
   return displayValue;
 };
-
+// 获取语言类别
 const getLang = () => {
   return location.hash.replace('#', '').split('/')[1] || 'zh-CN';
 };
