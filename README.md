@@ -1,38 +1,38 @@
 <p align="center">
-  <img src="https://cdn.rawgit.com/ElemeFE/element/dev/element_logo.svg">
+  <img src="https://cdn.rawgit.com/ElemeFE/element/dev/element_logo.svg" alt=""/>
 </p>
 
 <p align="center">
   <a href="https://travis-ci.org/ElemeFE/element">
-    <img src="https://travis-ci.org/ElemeFE/element.svg?branch=master">
+    <img src="https://travis-ci.org/ElemeFE/element.svg?branch=master" alt=""/>
   </a>
   <a href="https://coveralls.io/github/ElemeFE/element?branch=master">
-    <img src="https://coveralls.io/repos/github/ElemeFE/element/badge.svg?branch=master">
+    <img src="https://coveralls.io/repos/github/ElemeFE/element/badge.svg?branch=master" alt=""/>
   </a>
   <a href="https://cdnjs.com/libraries/element-ui">
-    <img src="https://img.shields.io/cdnjs/v/element-ui.svg">
+    <img src="https://img.shields.io/cdnjs/v/element-ui.svg" alt=""/>
   </a>
   <a href="https://www.npmjs.org/package/element-ui">
-    <img src="https://img.shields.io/npm/v/element-ui.svg">
+    <img src="https://img.shields.io/npm/v/element-ui.svg" alt=""/>
   </a>
   <a href="https://npmcharts.com/compare/element-ui?minimal=true">
-    <img src="http://img.shields.io/npm/dm/element-ui.svg">
+    <img src="http://img.shields.io/npm/dm/element-ui.svg" alt=""/>
   </a>
   <br>
   <a href="http://img.badgesize.io/https://unpkg.com/element-ui/lib/index.js?compression=gzip&label=gzip%20size:%20JS">
-    <img src="http://img.badgesize.io/https://unpkg.com/element-ui/lib/index.js?compression=gzip&label=gzip%20size:%20JS">
+    <img src="http://img.badgesize.io/https://unpkg.com/element-ui/lib/index.js?compression=gzip&label=gzip%20size:%20JS" alt=""/>
   </a>
   <a href="http://img.badgesize.io/https://unpkg.com/element-ui/lib/theme-chalk/index.css?compression=gzip&label=gzip%20size:%20CSS">
-    <img src="http://img.badgesize.io/https://unpkg.com/element-ui/lib/theme-chalk/index.css?compression=gzip&label=gzip%20size:%20CSS">
+    <img src="http://img.badgesize.io/https://unpkg.com/element-ui/lib/theme-chalk/index.css?compression=gzip&label=gzip%20size:%20CSS" alt=""/>
   </a>
   <a href="#backers">
-    <img src="https://opencollective.com/element/backers/badge.svg">
+    <img src="https://opencollective.com/element/backers/badge.svg" alt=""/>
   </a>
   <a href="#sponsors">
-    <img src="https://opencollective.com/element/sponsors/badge.svg">
+    <img src="https://opencollective.com/element/sponsors/badge.svg" alt=""/>
   </a>
   <a href="LICENSE">
-    <img src="https://img.shields.io/badge/License-MIT-yellow.svg">
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt=""/>
   </a>
 </p>
 
@@ -77,6 +77,9 @@ Element-2.15.7
 │   │   └──version.js:生成版本字符串数组到examples/version.json中，文档会使用
 │   └──webpack.test.js
 ├──examples：文档目录，组件相关示例 demo,这是一个完整独立的Vue项目\
+│   ├──components:主题及主题编辑器相关页面
+│   │   ├──theme // 主题页面相关
+│   │   ├──theme-configurator // 主题编辑器相关
 │   ├──docs:每一个md文档，分别对应着官网组件的展示页面 修改官网组件页面就在该目录下修改，通过项目组编写的 md-loader 进行转换成 vue 文件
 ├──lib： 构建后生成的文件，发布到npm包
 ├──packages：组件源码和组件样式文件
@@ -401,13 +404,6 @@ element的样式：
 `el-` 前缀所在配置文件路径 `packages/theme-chalk/src/mixins/config.scss` 部分样式是直接写在scss中写死的，部分是通过 `packages/theme-chalk/src/mixins/mixins.scss` 中的 b 函数更改的
 为了避免之前 Element 原有样式出问题，最好是新增一个函数和前缀配置，进行更改新增css代码部分的前缀。保证原有组件的写法与样式使用Element的规范，新增组件启用自己定义的规范，以便向前兼容。
 
-
-
-
-
-
-
-
 ### 色调
 
 全局色调配置文件路径 `packages/theme-chalk/src/common/var.scss` 在该文件中可以配置包括但不限于：
@@ -419,6 +415,53 @@ element的样式：
 辅助功能场景色：success(成功)、warning(警告)、danger(危险)、info(信息)、success-light、warning-light、danger-light、info-light、success-lighter、warning-lighter、danger-lighter、info-lighter
 
 其他还有 文本色、边框色等，各组件基础样式也是在该文件中进行配置
+
+### 主题
+
+`http://localhost:8085/#/zh-CN/theme` 主题页面模板所在路径为：`examples/pages/zh-CN/theme.vue`，通过分析该页面可知，主题页面遍历的主题card模板所在路径为：`examples/components/theme/theme-card.vue`，而页面展示的主题数据配置文件路径在 `examples/components/theme/theme-list.js`
+
+`examples/components/theme/loader/api.js` 配置主题 or 获取主题 同服务器交互文件
+`examples/components/theme/loader/ajax.js` 官方封装的 Ajax 用于主题的配置和获取
+
+因为主题配置，官网是通过服务器请求完成的，所以本地下载的源码是不能使用的，要自己建立服务器或者在前端增加这部分功能。
+
+页面编辑器\
+`examples/components/theme-configurator/index.vue` 主题配置页面,样式编辑器触发的方法为 userConfigChange 可以在该方法中获取到变动的数据的键值对，并 调用 updateVariable 接口方法
+
+`examples/components/theme-configurator/main.vue` 左侧区域
+
+`examples/components/theme-configurator/action.vue` 右侧编辑区域
+
+`examples/components/theme/loader/index.vue` updateVars 提交变更的配置值作为参数并请求返回改变后的css样式值(即新的主题)，用于改变页面样式
+
+`examples/components/theme/loader/index.vue` 下载调用的方法也在该页面
+
+服务器部分？
+
+- getVariable 方法\
+   `https://element-api.ele.me/element/theme/getVariable?version=2.15.7` 获取默认主题样式
+- updateVars\
+   `https://element-api.ele.me/element/theme/updateVariable?version=2.15.7` 传递参数为 global 返回结果为css,当初传
+
+```
+// 改变配置时参数 结果：返回css样式
+{
+  "global": {
+      "$--color-primary": "#47CBC2"
+  },
+  "local": {}
+}
+// 下载的时候的参数 "download": true 结果：下载文件
+{
+    "global": {
+        "$--color-primary": "#0BE109"
+    },
+    "local": {},
+    "download": true
+}
+```
+
+
 
 ## 组件
 
@@ -458,10 +501,6 @@ export default {
 </script>
 ```
 
-
-
-
-
 ## 打包
 
 使用以下命令打包:
@@ -486,7 +525,7 @@ export default {
 发布的包（即项目中下载的 node_modules\element-ui 目录下的文件）的目录结构如下：
 
 ```
-element-ui
+wxl-ui
 ├──lib // 通过 dist 命令打包生成的文件夹
 ├──packages // 组件源码包
 ├──src // 入口文件和一些工具辅助函数
@@ -510,6 +549,246 @@ element-ui
 1. 注册 npm 账号
 2. 打包文件，将打包文件上传
 
+[comment]: <> (1.打包之后的 lib/element-ui.common.js 文件中 引用的 element-ui路径跟新，创建的npm包名不一致，需要替换更改)
+
+[comment]: <> (2. 组件 cascader-panel.js 中引入的其他包的路径 也为 element-ui)
+
+[comment]: <> (./node_modules/wxl-ui/lib/cascader-panel.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/checkbox' in 'D:\www\wxl\node_modules\wxl-ui\lib')
+
+[comment]: <> (3.组件 select.js 同上16处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/select.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/input' in 'D:\www\wxl\node_modules\wxl-ui\lib')
+
+[comment]: <> (4.组件 input-number.js 同上5处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/input-number.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/input' in 'D:\www\wxl\node_modules\wxl-ui\lib')
+
+[comment]: <> (8.lib/input.js 同上8处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/input.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/mixins/emitter' in 'D:\www\wxl\node_modules\wxl-ui\lib')
+
+[comment]: <> (9.lib/checkbox.js 同上2处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/checkbox.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/mixins/emitter' in 'D:\www\wxl\node_modules\wxl-ui\lib')
+
+[comment]: <> (10.lib/checkbox-group.js 同上2处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/checkbox-group.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/mixins/emitter' in 'D:\www\wxl\node_modules\wxl-ui\lib')
+
+[comment]: <> (11.lib/option.js 同上4处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/option.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/mixins/emitter' in 'D:\www\wxl\node_modules\wxl-ui\lib')
+
+[comment]: <> (12.lib/radio.js  同上2处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/radio.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/mixins/emitter' in 'D:\www\wxl\node_modules\wxl-ui\lib')
+
+[comment]: <> (13.lib/scrollbar.js 同上8处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/scrollbar.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib')
+
+[comment]: <> (14.lib/tooltip.js 同上6处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/tooltip.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib')
+
+[comment]: <> (15.lib/popover.js 同上6处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/popover.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib')
+
+
+
+[comment]: <> (5.lib/mixins/locale.js 同上1处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/mixins/locale.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/locale' in 'D:\www\wxl\node_modules\wxl-ui\lib\mixins')
+
+[comment]: <> (23.lib/mixins/migrating.js 同上2处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/mixins/migrating.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/utils/util' in 'D:\www\wxl\node_modules\wxl-ui\lib\mixins')
+
+
+[comment]: <> (6.lib/utils/date-util.js 同上2处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/utils/date-util.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/locale' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils')
+
+[comment]: <> (17.lib/utils/clickoutside.js 同上1处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/utils/clickoutside.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils')
+
+[comment]: <> (18.lib/utils/popup/index.js 同上2处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/utils/popup/index.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/utils/merge' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils\popup')
+
+[comment]: <> (19.lib/utils/popup/popup-manager.js 同上1处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/utils/popup/popup-manager.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils\popup')
+
+[comment]: <> (20.lib/utils/vue-popper.js 同上1处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/utils/vue-popper.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/utils/popup' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils')
+
+[comment]: <> (21.lib/utils/util.js 同上1处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/utils/util.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/utils/types' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils')
+
+[comment]: <> (24.lib/utils/vdom.js 同上1处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/utils/vdom.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/utils/util' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils')
+
+
+[comment]: <> (7.lib/locale/index.js 同上1处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/locale/index.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/locale/lang/zh-CN' in 'D:\www\wxl\node_modules\wxl-ui\lib\locale')
+
+[comment]: <> (22.lib/locale/format.js 同上1处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/locale/format.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/utils/util' in 'D:\www\wxl\node_modules\wxl-ui\lib\locale')
+
+
+[comment]: <> (16.lib/transitions/collapse-transition.js 同上1处)
+
+[comment]: <> (./node_modules/wxl-ui/lib/transitions/collapse-transition.js)
+
+[comment]: <> (Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib\transitions')
+
+[comment]: <> (在打包的时候修改配置文件 config 中的路径目录)
+
+[comment]: <> (原本就是require 无需转换的无法直接替换 )
+
+[comment]: <> (wxl-ui\lib\mixins\locale.js)
+
+[comment]: <> (/wxl-ui/lib/utils/date-util.js)
+
+[comment]: <> (./node_modules/wxl-ui/lib/locale/index.js)
+
+[comment]: <> (./node_modules/wxl-ui/lib/transitions/collapse-transition.js)
+
+[comment]: <> (./node_modules/wxl-ui/lib/utils/clickoutside.js)
+
+[comment]: <> (./node_modules/wxl-ui/lib/utils/popup/index.js)
+
+[comment]: <> (./node_modules/wxl-ui/lib/utils/popup/popup-manager.js)
+
+[comment]: <> (./node_modules/wxl-ui/lib/utils/vue-popper.js)
+
+[comment]: <> (./node_modules/wxl-ui/lib/utils/util.js)
+
+[comment]: <> (./node_modules/wxl-ui/lib/locale/format.js)
+
+[comment]: <> (./node_modules/wxl-ui/lib/mixins/migrating.js)
+
+[comment]: <> (./node_modules/wxl-ui/lib/utils/vdom.js)
+
+关于打包后 npm 包目录与打包不一致问题，可通过以下三步进行解决：\
+这里我设置的 npm 包名为 `wxl-ui`\
+1. 更改 webpack 别名映射目录
+```
+exports.alias = {
+  main: path.resolve(__dirname, '../src'),
+  packages: path.resolve(__dirname, '../packages'),
+  examples: path.resolve(__dirname, '../examples'),
+  'element-ui': path.resolve(__dirname, '../'),
+  'mti-ui': path.resolve(__dirname, '../')
+};
+```
+2. 更改打包引入路径为含有包名称的路径
+```
+Object.keys(Components).forEach(function(key) {
+  externals[`element-ui/packages/${key}`] = `wxl-ui/lib/${key}`;
+});
+
+externals['element-ui/src/locale'] = 'wxl-ui/lib/locale';
+utilsList.forEach(function(file) {
+  file = path.basename(file, '.js');
+  externals[`element-ui/src/utils/${file}`] = `wxl-ui/lib/utils/${file}`;
+});
+mixinsList.forEach(function(file) {
+  file = path.basename(file, '.js');
+  externals[`element-ui/src/mixins/${file}`] = `wxl-ui/lib/mixins/${file}`;
+});
+transitionList.forEach(function(file) {
+  file = path.basename(file, '.js');
+  externals[`element-ui/src/transitions/${file}`] = `wxl-ui/lib/transitions/${file}`;
+});
+```
+3. 将根目录 src 下的以下文件中 require 路径中的`element-ui` 目录 更改成与你的npm包名一致的目录
+
+```
+src/mixins/locale.js
+src/utils/date-util.js
+src/locale/index.js
+src/transitions/collapse-transition.js
+src/utils/clickoutside.js
+src/utils/popup/index.js
+src/utils/popup/popup-manager.js
+src/utils/vue-popper.js
+src/utils/util.js
+src/locale/format.js
+src/mixins/migrating.js
+src/utils/vdom.js
+```
+
+4. 如果不进行第三步的话则每次都需要更改打包后的文件,将打包好的lib下的以下文件中 require 路径中的`element-ui` 目录 更改成与你的npm包名一致的目录
+
+```
+lib/mixins/locale.js
+lib/utils/date-util.js
+lib/locale/index.js
+lib/transitions/collapse-transition.js
+lib/utils/clickoutside.js
+lib/utils/popup/index.js
+lib/utils/popup/popup-manager.js
+lib/utils/vue-popper.js
+lib/utils/util.js
+lib/locale/format.js
+lib/mixins/migrating.js
+lib/utils/vdom.js
+```
+
+打包好文件后，按照上面目录将文件复制到 npm 发布文件夹下即可
 
 
 ## 其他
@@ -519,87 +798,3 @@ element-ui
 - http://localhost:8085
 - Element-Plus：[https://github.com/element-plus/element-plus](https://github.com/element-plus/element-plus)
 - vue-element-admin：[https://github.com/PanJiaChen/vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
-
-
-
-1.打包之后的 lib/element-ui.common.js 文件中 引用的 element-ui路径跟新，创建的npm包名不一致，需要替换更改
-2. 组件 cascader-panel.js 中引入的其他包的路径 也为 element-ui
-./node_modules/wxl-ui/lib/cascader-panel.js
-Module not found: Error: Can't resolve 'element-ui/lib/checkbox' in 'D:\www\wxl\node_modules\wxl-ui\lib'
-3.组件 select.js 同上16处
-./node_modules/wxl-ui/lib/select.js
-Module not found: Error: Can't resolve 'element-ui/lib/input' in 'D:\www\wxl\node_modules\wxl-ui\lib'
-4.组件 input-number.js 同上5处
-./node_modules/wxl-ui/lib/input-number.js
-Module not found: Error: Can't resolve 'element-ui/lib/input' in 'D:\www\wxl\node_modules\wxl-ui\lib'
-8.lib/input.js 同上8处
-./node_modules/wxl-ui/lib/input.js
-Module not found: Error: Can't resolve 'element-ui/lib/mixins/emitter' in 'D:\www\wxl\node_modules\wxl-ui\lib'
-9.lib/checkbox.js 同上2处
-./node_modules/wxl-ui/lib/checkbox.js
-Module not found: Error: Can't resolve 'element-ui/lib/mixins/emitter' in 'D:\www\wxl\node_modules\wxl-ui\lib'
-10.lib/checkbox-group.js 同上2处
-./node_modules/wxl-ui/lib/checkbox-group.js
-Module not found: Error: Can't resolve 'element-ui/lib/mixins/emitter' in 'D:\www\wxl\node_modules\wxl-ui\lib'
-11.lib/option.js 同上4处
-./node_modules/wxl-ui/lib/option.js
-Module not found: Error: Can't resolve 'element-ui/lib/mixins/emitter' in 'D:\www\wxl\node_modules\wxl-ui\lib'
-12.lib/radio.js  同上2处
-./node_modules/wxl-ui/lib/radio.js
-Module not found: Error: Can't resolve 'element-ui/lib/mixins/emitter' in 'D:\www\wxl\node_modules\wxl-ui\lib'
-13.lib/scrollbar.js 同上8处
-./node_modules/wxl-ui/lib/scrollbar.js
-Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib'
-14.lib/tooltip.js 同上6处
-./node_modules/wxl-ui/lib/tooltip.js
-Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib'
-15.lib/popover.js 同上6处
-./node_modules/wxl-ui/lib/popover.js
-Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib'
-
-
-
-5.lib/mixins/locale.js 同上1处
-./node_modules/wxl-ui/lib/mixins/locale.js
-Module not found: Error: Can't resolve 'element-ui/lib/locale' in 'D:\www\wxl\node_modules\wxl-ui\lib\mixins'
-23.lib/mixins/migrating.js 同上2处
-./node_modules/wxl-ui/lib/mixins/migrating.js
-Module not found: Error: Can't resolve 'element-ui/lib/utils/util' in 'D:\www\wxl\node_modules\wxl-ui\lib\mixins'
-
-
-6.lib/utils/date-util.js 同上2处
-./node_modules/wxl-ui/lib/utils/date-util.js
-Module not found: Error: Can't resolve 'element-ui/lib/locale' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils'
-17.lib/utils/clickoutside.js 同上1处
-./node_modules/wxl-ui/lib/utils/clickoutside.js
-Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils'
-18.lib/utils/popup/index.js 同上2处
-./node_modules/wxl-ui/lib/utils/popup/index.js
-Module not found: Error: Can't resolve 'element-ui/lib/utils/merge' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils\popup'
-19.lib/utils/popup/popup-manager.js 同上1处
-./node_modules/wxl-ui/lib/utils/popup/popup-manager.js
-Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils\popup'
-20.lib/utils/vue-popper.js 同上1处
-./node_modules/wxl-ui/lib/utils/vue-popper.js
-Module not found: Error: Can't resolve 'element-ui/lib/utils/popup' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils'
-21.lib/utils/util.js 同上1处
-./node_modules/wxl-ui/lib/utils/util.js
-Module not found: Error: Can't resolve 'element-ui/lib/utils/types' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils'
-24.lib/utils/vdom.js 同上1处
-./node_modules/wxl-ui/lib/utils/vdom.js
-Module not found: Error: Can't resolve 'element-ui/lib/utils/util' in 'D:\www\wxl\node_modules\wxl-ui\lib\utils'
-
-
-7.lib/locale/index.js 同上1处
-./node_modules/wxl-ui/lib/locale/index.js
-Module not found: Error: Can't resolve 'element-ui/lib/locale/lang/zh-CN' in 'D:\www\wxl\node_modules\wxl-ui\lib\locale'
-22.lib/locale/format.js 同上1处
-./node_modules/wxl-ui/lib/locale/format.js
-Module not found: Error: Can't resolve 'element-ui/lib/utils/util' in 'D:\www\wxl\node_modules\wxl-ui\lib\locale'
-
-
-16.lib/transitions/collapse-transition.js 同上1处
-./node_modules/wxl-ui/lib/transitions/collapse-transition.js
-Module not found: Error: Can't resolve 'element-ui/lib/utils/dom' in 'D:\www\wxl\node_modules\wxl-ui\lib\transitions'
-
-
