@@ -179,6 +179,9 @@ npm run dev
 # or
 yarn dev
 
+// 启动调试
+yarn dev:play
+
 # open http://localhost:8085
 ```
 
@@ -460,6 +463,27 @@ element的样式：
     "download": true
 }
 ```
+
+ 通过访问以下链接 `//unpkg.com/element-ui@${version}/lib/theme-chalk/index.css` 可获得不同版本的主题样式，本项目使用的是 2.15.7 版本，`https://unpkg.com/element-ui@2.15.7/lib/theme-chalk/index.css`
+
+通过 theme-chalk-preview 将配置的css样式进行重新生成，并写入到文档页面的head中，以改变文档的主题样式，并提供下载功能，可供项目组下载直接在项目中引入，以改变主题颜色。通过该方法可切断同服务器的交互，使得主题配置服务全部由前端提供。
+
+http://github.com/ElementUI/theme-chalk-preview/archive/refs/heads/master.zip
+https://segmentfault.com/a/1190000009762198#articleHeader2
+思路：\
+1. 先把默认主题文件中涉及到颜色的 CSS 值替换成关键词
+2. 根据用户选择的主题色生成一系列对应的颜色值
+3. 把关键词再换回刚刚生成的相应的颜色值
+4. 直接在页面上加 style 标签，把生成的样式填进去
+
+
+
+
+
+
+
+
+
 
 
 
@@ -757,18 +781,18 @@ transitionList.forEach(function(file) {
 3. 将根目录 src 下的以下文件中 require 路径中的`element-ui` 目录 更改成与你的npm包名一致的目录
 
 ```
-src/mixins/locale.js
-src/utils/date-util.js
+src/locale/format.js
 src/locale/index.js
+src/mixins/locale.js
+src/mixins/migrating.js
 src/transitions/collapse-transition.js
-src/utils/clickoutside.js
 src/utils/popup/index.js
 src/utils/popup/popup-manager.js
-src/utils/vue-popper.js
+src/utils/clickoutside.js
+src/utils/date-util.js
 src/utils/util.js
-src/locale/format.js
-src/mixins/migrating.js
 src/utils/vdom.js
+src/utils/vue-popper.js
 ```
 
 4. 如果不进行第三步的话则每次都需要更改打包后的文件,将打包好的lib下的以下文件中 require 路径中的`element-ui` 目录 更改成与你的npm包名一致的目录
