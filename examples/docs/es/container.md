@@ -14,6 +14,7 @@ De lo contrario, de forma horizontal.
 
 :::tip
 Estos componentes utilizan flex para el diseño, así que asegúrese que el navegador lo soporta. Además, los elementos directos de `<el-container>` tienen que ser uno o más de los últimos cuatro componentes. Y el elemento padre de los últimos cuatro componentes debe ser un `<el-container>`.
+Sidebar layout width recommendations: 60px、280px and 340px
 :::
 
 ### Diseños comunes
@@ -39,9 +40,52 @@ Estos componentes utilizan flex para el diseño, así que asegúrese que el nave
 <el-container>
   <el-header>Cabecera</el-header>
   <el-container>
-    <el-aside width="200px">Barra lateral</el-aside>
     <el-main>Principal</el-main>
+      <el-aside width="200px">Barra lateral</el-aside>
   </el-container>
+</el-container>
+
+<el-container>
+    <el-header height="80px">Cabecera 80px</el-header>
+    <el-container>
+        <el-aside width="340px">Barra lateral 340px</el-aside>
+        <el-main>Principal</el-main>
+    </el-container>
+</el-container>
+
+<el-container>
+    <el-header height="80px">Cabecera 80px</el-header>
+    <el-container>
+        <el-aside width="80px">Barra lateral 80px</el-aside>
+        <el-main>Principal</el-main>
+    </el-container>
+</el-container>
+
+<el-container>
+    <el-header height="50px">Cabecera</el-header>
+    <el-container>
+        <el-aside width="200px">Barra lateral</el-aside>
+        <el-aside width="200px" margin="0 10px 0 0">LeftMain</el-aside>
+        <el-main>Principal</el-main>
+    </el-container>
+</el-container>
+
+<el-container>
+    <el-header height="50px">Cabecera</el-header>
+    <el-container>
+        <el-aside width="60px" margin="0 10px 0 0">Aside</el-aside>
+        <el-aside width="200px">Barra lateral</el-aside>
+        <el-main>Principal</el-main>
+    </el-container>
+</el-container>
+
+<el-container>
+    <el-header height="50px">Cabecera</el-header>
+    <el-container>
+        <el-aside width="200px">Barra lateral1</el-aside>
+        <el-main>Principal</el-main>
+        <el-aside width="200px">Barra lateral2</el-aside>
+    </el-container>
 </el-container>
 
 <el-container>
@@ -56,6 +100,38 @@ Estos componentes utilizan flex para el diseño, así que asegúrese que el nave
 </el-container>
 
 <el-container>
+    <el-header>Cabecera</el-header>
+    <el-container>
+        <el-aside width="200px">Barra lateral</el-aside>
+        <el-container>
+            <el-main>Principal</el-main>
+        </el-container>
+    </el-container>
+    <el-footer>Pie de página</el-footer>
+</el-container>
+
+<el-container>
+    <el-header>Cabecera</el-header>
+    <el-container>
+        <el-container>
+            <el-main>Principal</el-main>
+        </el-container>
+        <el-aside width="200px">Barra lateral</el-aside>
+    </el-container>
+    <el-footer>Pie de página</el-footer>
+</el-container>
+
+<el-container>
+    <el-header>Cabecera</el-header>
+    <el-container>
+        <el-aside width="200px">Barra lateral1</el-aside>
+        <el-main>Principal</el-main>
+        <el-aside width="200px">Barra lateral2</el-aside>
+    </el-container>
+    <el-footer>Pie de página</el-footer>
+</el-container>
+
+<el-container>
   <el-aside width="200px">Barra lateral</el-aside>
   <el-container>
     <el-header>Cabecera</el-header>
@@ -64,7 +140,7 @@ Estos componentes utilizan flex para el diseño, así que asegúrese que el nave
 </el-container>
 
 <el-container>
-  <el-aside width="200px">Barra lateral</el-aside>
+  <el-aside width="60px">Barra lateral</el-aside>
   <el-container>
     <el-header>Cabecera</el-header>
     <el-main>Principal</el-main>
@@ -94,8 +170,12 @@ Estos componentes utilizan flex para el diseño, así que asegúrese que el nave
     line-height: 160px;
   }
   
-  body > .el-container {
-    margin-bottom: 40px;
+  .el-container {
+      margin-bottom: 40px;
+  }
+  
+  .el-container > .el-container {
+      margin-bottom: 0px;
   }
   
   .el-container:nth-child(5) .el-aside,
@@ -103,8 +183,12 @@ Estos componentes utilizan flex para el diseño, así que asegúrese que el nave
     line-height: 260px;
   }
   
-  .el-container:nth-child(7) .el-aside {
+  .el-container:nth-child(7) .el-container .el-aside,.el-container:nth-child(8) .el-container .el-aside {
     line-height: 320px;
+  }
+  .el-container:nth-child(7) .el-container .el-aside:nth-of-type(2), .el-container:nth-child(8) .el-container .
+  el-aside:nth-of-type(2) {
+      background: #E0E6EC;
   }
 </style>
 ```
@@ -234,6 +318,8 @@ Estos componentes utilizan flex para el diseño, así que asegúrese que el nave
 | Atributo | Descripción               | Tipo   | Valores aceptados | Por defecto |
 | -------- | ------------------------- | ------ | ----------------- | ----------- |
 | width    | ancho de la barra lateral | string | —                 | 300px       |
+| margin   | Sidebar margin            | string | —                 | 0           |
+| padding  | Sidebar padding           | string | —                 | 0           |
 
 ### Atributos de pie de página
 | Atributo | Descripción              | Tipo   | Valores aceptados | Por defecto |

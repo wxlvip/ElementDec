@@ -12,7 +12,9 @@
 `<el-footer>`：底栏容器。
 
 :::tip
-以上组件采用了 flex 布局，使用前请确定目标浏览器是否兼容。此外，`<el-container>` 的子元素只能是后四者，后四者的父元素也只能是 `<el-container>`。
+以上组件采用了 flex 布局，使用前请确定目标浏览器是否兼容。此外，`<el-container>` 的直接子元素必须是后四个组件中的一个或多个。 后四个组件的亲元素必须是一个 `<el-container>`。
+
+侧边栏布局宽度建议：60px、280px以及340px
 :::
 
 ### 常见页面布局
@@ -38,9 +40,52 @@
 <el-container>
   <el-header>Header</el-header>
   <el-container>
-    <el-aside width="200px">Aside</el-aside>
     <el-main>Main</el-main>
+      <el-aside width="200px">Aside</el-aside>
   </el-container>
+</el-container>
+
+<el-container>
+    <el-header height="80px">Header 80px</el-header>
+    <el-container>
+        <el-aside width="340px">Aside 340px</el-aside>
+        <el-main>Main</el-main>
+    </el-container>
+</el-container>
+
+<el-container>
+    <el-header height="80px">Header 80px</el-header>
+    <el-container>
+        <el-aside width="80px">Aside 80px</el-aside>
+        <el-main>Main</el-main>
+    </el-container>
+</el-container>
+
+<el-container>
+    <el-header height="50px">Header</el-header>
+    <el-container>
+        <el-aside width="200px">Aside</el-aside>
+        <el-aside width="200px" margin="0 10px 0 0">LeftMain</el-aside>
+        <el-main>Main</el-main>
+    </el-container>
+</el-container>
+
+<el-container>
+    <el-header height="50px">Header</el-header>
+    <el-container>
+        <el-aside width="60px" margin="0 10px 0 0">Aside</el-aside>
+        <el-aside width="200px">AsideRight</el-aside>
+        <el-main>Main</el-main>
+    </el-container>
+</el-container>
+
+<el-container>
+    <el-header height="50px">Header</el-header>
+    <el-container>
+        <el-aside width="200px">AsideLeft</el-aside>
+        <el-main>Main</el-main>
+        <el-aside width="200px">AsideRight</el-aside>
+    </el-container>
 </el-container>
 
 <el-container>
@@ -55,6 +100,38 @@
 </el-container>
 
 <el-container>
+    <el-header>Header</el-header>
+    <el-container>
+        <el-aside width="200px">Aside</el-aside>
+        <el-container>
+            <el-main>Main</el-main>
+        </el-container>
+    </el-container>
+    <el-footer>Footer</el-footer>
+</el-container>
+
+<el-container>
+    <el-header>Header</el-header>
+    <el-container>
+        <el-container>
+            <el-main>Main</el-main>
+        </el-container>
+        <el-aside width="200px">Aside</el-aside>
+    </el-container>
+    <el-footer>Footer</el-footer>
+</el-container>
+
+<el-container>
+    <el-header>Header</el-header>
+    <el-container>
+        <el-aside width="200px">Aside</el-aside>
+        <el-main>Main</el-main>
+        <el-aside width="200px">Aside</el-aside>
+    </el-container>
+    <el-footer>Footer</el-footer>
+</el-container>
+
+<el-container>
   <el-aside width="200px">Aside</el-aside>
   <el-container>
     <el-header>Header</el-header>
@@ -63,7 +140,7 @@
 </el-container>
 
 <el-container>
-  <el-aside width="200px">Aside</el-aside>
+  <el-aside width="60px">Aside</el-aside>
   <el-container>
     <el-header>Header</el-header>
     <el-main>Main</el-main>
@@ -97,13 +174,21 @@
     margin-bottom: 40px;
   }
   
+  .el-container > .el-container {
+      margin-bottom: 0px;
+  }
+  
   .el-container:nth-child(5) .el-aside,
   .el-container:nth-child(6) .el-aside {
     line-height: 260px;
   }
   
-  .el-container:nth-child(7) .el-aside {
+  .el-container:nth-child(7) .el-container .el-aside,.el-container:nth-child(8) .el-container .el-aside {
     line-height: 320px;
+  }
+  .el-container:nth-child(7) .el-container .el-aside:nth-of-type(2), .el-container:nth-child(8) .el-container .
+  el-aside:nth-of-type(2) {
+      background: #E0E6EC;
   }
 </style>
 ```
@@ -230,9 +315,11 @@
 | height | 顶栏高度 | string | — | 60px |
 
 ### Aside Attributes
-| 参数    | 说明     | 类型    | 可选值      | 默认值 |
-|---------|----------|---------|-------------|--------|
-| width | 侧边栏宽度 | string | — | 300px |
+| 参数      | 说明     | 类型    | 可选值      | 默认值 |
+|---------|--------|---------|-------------|---|
+| width   | 侧边栏宽度  | string | — | 300px |
+| margin  | 侧边栏外边距 | string | — | 0 |
+| padding | 侧边栏内边距 | string | — | 0 |
 
 ### Footer Attributes
 | 参数    | 说明     | 类型    | 可选值      | 默认值 |

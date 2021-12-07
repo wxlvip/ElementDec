@@ -38,9 +38,52 @@ These components use flex for layout, so please make sure your browser supports 
 <el-container>
   <el-header>Header</el-header>
   <el-container>
-    <el-aside width="200px">Aside</el-aside>
     <el-main>Main</el-main>
+      <el-aside width="200px">Aside</el-aside>
   </el-container>
+</el-container>
+
+<el-container>
+    <el-header height="80px">Header 80px</el-header>
+    <el-container>
+        <el-aside width="340px">Aside 340px</el-aside>
+        <el-main>Main</el-main>
+    </el-container>
+</el-container>
+
+<el-container>
+    <el-header height="80px">Header 80px</el-header>
+    <el-container>
+        <el-aside width="80px">Aside 80px</el-aside>
+        <el-main>Main</el-main>
+    </el-container>
+</el-container>
+
+<el-container>
+    <el-header height="50px">Header</el-header>
+    <el-container>
+        <el-aside width="200px">Aside</el-aside>
+        <el-aside width="200px" margin="0 10px 0 0">LeftMain</el-aside>
+        <el-main>Main</el-main>
+    </el-container>
+</el-container>
+
+<el-container>
+    <el-header height="50px">Header</el-header>
+    <el-container>
+        <el-aside width="60px" margin="0 10px 0 0">Aside</el-aside>
+        <el-aside width="200px">AsideRight</el-aside>
+        <el-main>Main</el-main>
+    </el-container>
+</el-container>
+
+<el-container>
+    <el-header height="50px">Header</el-header>
+    <el-container>
+        <el-aside width="200px">AsideLeft</el-aside>
+        <el-main>Main</el-main>
+        <el-aside width="200px">AsideRight</el-aside>
+    </el-container>
 </el-container>
 
 <el-container>
@@ -55,6 +98,38 @@ These components use flex for layout, so please make sure your browser supports 
 </el-container>
 
 <el-container>
+    <el-header>Header</el-header>
+    <el-container>
+        <el-aside width="200px">Aside</el-aside>
+        <el-container>
+            <el-main>Main</el-main>
+        </el-container>
+    </el-container>
+    <el-footer>Footer</el-footer>
+</el-container>
+
+<el-container>
+    <el-header>Header</el-header>
+    <el-container>
+        <el-container>
+            <el-main>Main</el-main>
+        </el-container>
+        <el-aside width="200px">Aside</el-aside>
+    </el-container>
+    <el-footer>Footer</el-footer>
+</el-container>
+
+<el-container>
+    <el-header>Header</el-header>
+    <el-container>
+        <el-aside width="200px">Aside</el-aside>
+        <el-main>Main</el-main>
+        <el-aside width="200px">Aside</el-aside>
+    </el-container>
+    <el-footer>Footer</el-footer>
+</el-container>
+
+<el-container>
   <el-aside width="200px">Aside</el-aside>
   <el-container>
     <el-header>Header</el-header>
@@ -63,7 +138,7 @@ These components use flex for layout, so please make sure your browser supports 
 </el-container>
 
 <el-container>
-  <el-aside width="200px">Aside</el-aside>
+  <el-aside width="60px">Aside</el-aside>
   <el-container>
     <el-header>Header</el-header>
     <el-main>Main</el-main>
@@ -97,13 +172,21 @@ These components use flex for layout, so please make sure your browser supports 
     margin-bottom: 40px;
   }
   
+  .el-container > .el-container {
+      margin-bottom: 0px;
+  }
+  
   .el-container:nth-child(5) .el-aside,
   .el-container:nth-child(6) .el-aside {
     line-height: 260px;
   }
   
-  .el-container:nth-child(7) .el-aside {
+  .el-container:nth-child(7) .el-container .el-aside,.el-container:nth-child(8) .el-container .el-aside {
     line-height: 320px;
+  }
+  .el-container:nth-child(7) .el-container .el-aside:nth-of-type(2), .el-container:nth-child(8) .el-container .
+  el-aside:nth-of-type(2) {
+      background: #E0E6EC;
   }
 </style>
 ```
@@ -233,6 +316,8 @@ These components use flex for layout, so please make sure your browser supports 
 | Attribute      | Description          | Type      | Accepted Values       | Default  |
 |---------- |-------------- |---------- |--------------------------------  |-------- |
 | width | width of the side section | string | — | 300px |
+| margin  | Sidebar margin | string | — | 0 |
+| padding | Sidebar padding | string | — | 0 |
 
 ### Footer Attributes
 | Attribute      | Description          | Type      | Accepted Values       | Default  |

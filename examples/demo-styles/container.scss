@@ -28,16 +28,34 @@
     line-height: 160px;
   }
 
-  & > .source > .el-container {
+  .el-container {
     margin-bottom: 40px;
-
+    .el-container {
+      margin-bottom: 0px;
+    }
     &:nth-child(5) .el-aside,
     &:nth-child(6) .el-aside {
       line-height: 260px;
     }
-
-    &:nth-child(7) .el-aside {
-      line-height: 320px;
+    &:nth-child(7) {
+      .el-container{
+        .el-aside {
+          line-height: 320px;
+          &:nth-of-type(2){
+            background: #E0E6EC;
+          }
+        }
+      }
+    }
+    &:nth-child(8) {
+      .el-container{
+        .el-aside {
+          line-height: 320px;
+          &:nth-of-type(2){
+            background: #E0E6EC;
+          }
+        }
+      }
     }
   }
 }
