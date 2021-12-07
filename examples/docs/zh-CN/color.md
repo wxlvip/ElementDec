@@ -92,16 +92,16 @@
 
 ## Color 色彩
 
-Element 为了避免视觉传达差异，使用一套特定的调色板来规定颜色，为你所搭建的产品提供一致的外观视觉感受。
+为了避免视觉传达差异，使用一套特定的调色板来规定颜色，为你所搭建的产品提供一致的外观视觉感受。
 
 ### 主色
 
-Element 主要品牌颜色是鲜艳、友好的蓝色。
+主要品牌颜色是鲜艳、友好的蓝色。
 
 <el-row :gutter="12">
   <el-col :span="10" :xs="{span: 12}">
     <div class="demo-color-box" :style="{ background: primary }">Brand Color
-      <div class="value">#409EFF</div>
+      <div class="value">{{primary}}</div>
       <div class="bg-color-sub" :style="{ background: tintColor(primary, 0.9) }">
         <div
           class="bg-blue-sub-item"
@@ -122,7 +122,7 @@ Element 主要品牌颜色是鲜艳、友好的蓝色。
   <el-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box"
     :style="{ background: success }"
-    >Success<div class="value">#67C23A</div>
+    >Success<div class="value">{{success}}</div>
       <div 
         class="bg-color-sub"
       >
@@ -139,7 +139,7 @@ Element 主要品牌颜色是鲜艳、友好的蓝色。
   <el-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box"
     :style="{ background: warning }"
-    >Warning<div class="value">#E6A23C</div>
+    >Warning<div class="value">{{warning}}</div>
       <div 
           class="bg-color-sub"
         >
@@ -156,7 +156,7 @@ Element 主要品牌颜色是鲜艳、友好的蓝色。
   <el-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box"
     :style="{ background: danger }"
-    >Danger<div class="value">#F56C6C</div>
+    >Danger<div class="value">{{danger}}</div>
       <div 
           class="bg-color-sub"
         >
@@ -173,7 +173,7 @@ Element 主要品牌颜色是鲜艳、友好的蓝色。
   <el-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box"
     :style="{ background: info }"
-    >Info<div class="value">#909399</div>
+    >Info<div class="value">{{info}}</div>
       <div 
           class="bg-color-sub"
         >

@@ -91,7 +91,7 @@
 </script>
 
 ## Couleur
-Element utilise un ensemble de palettes spécifiques afin de fournir un style consistant pour vos produits.
+Wxl-UI utilise un ensemble de palettes spécifiques afin de fournir un style consistant pour vos produits.
 
 ### Couleur principale
 
@@ -100,7 +100,7 @@ La couleur principale d'Element est un bleu clair et agréable.
 <el-row :gutter="12">
   <el-col :span="10" :xs="{span: 12}">
     <div class="demo-color-box" :style="{ background: primary }">Couleur principale
-      <div class="value">#409EFF</div>
+      <div class="value">{{primary}}</div>
       <div class="bg-color-sub" :style="{ background: tintColor(primary, 0.9) }">
         <div
           class="bg-blue-sub-item"
@@ -120,7 +120,7 @@ En plus de la couleur principale, vous devrez sans doute utiliser d'autres coule
 <el-row :gutter="12">
   <el-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box" :style="{ background: success }">Succès
-      <div class="value">#67C23A</div>
+      <div class="value">{{success}}</div>
       <div class="bg-color-sub">
         <div
           class="bg-success-sub-item"
@@ -133,7 +133,7 @@ En plus de la couleur principale, vous devrez sans doute utiliser d'autres coule
   </el-col>
   <el-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box" :style="{ background: warning }">Avertissement
-      <div class="value">#E6A23C</div>
+      <div class="value">{{warning}}</div>
       <div class="bg-color-sub">
         <div
           class="bg-success-sub-item"
@@ -146,7 +146,7 @@ En plus de la couleur principale, vous devrez sans doute utiliser d'autres coule
   </el-col>
   <el-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box" :style="{ background: danger }">Danger
-      <div class="value">#F56C6C</div>
+      <div class="value">{{danger}}</div>
       <div class="bg-color-sub">
         <div
           class="bg-success-sub-item"
@@ -159,7 +159,7 @@ En plus de la couleur principale, vous devrez sans doute utiliser d'autres coule
   </el-col>
   <el-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box" :style="{ background: info }">Info
-      <div class="value">#909399</div>
+      <div class="value">{{info}}</div>
       <div class="bg-color-sub">
         <div
           class="bg-success-sub-item"

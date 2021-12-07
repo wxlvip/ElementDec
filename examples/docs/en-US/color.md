@@ -92,7 +92,7 @@
 
 ## Color
 
-Element uses a specific set of palettes to specify colors to provide a consistent look and feel for the products you build.
+Wxl-UI uses a specific set of palettes to specify colors to provide a consistent look and feel for the products you build.
 
 ### Main Color
 
@@ -104,7 +104,7 @@ The main color of Element is bright and friendly blue.
       class="demo-color-box"
       :style="{ background: primary }"
     >
-      Brand Color<div class="value">#409EFF</div>
+      Brand Color<div class="value">{{primary}}</div>
     <div 
       class="bg-color-sub"
       :style="{ background: tintColor(primary, 0.9) }"
@@ -129,7 +129,7 @@ Besides the main color, you need to use different scene colors in different scen
   <el-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box"
     :style="{ background: success }"
-    >Success<div class="value">#67C23A</div>
+    >Success<div class="value">{{success}}</div>
       <div 
         class="bg-color-sub"
       >
@@ -146,7 +146,7 @@ Besides the main color, you need to use different scene colors in different scen
   <el-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box"
     :style="{ background: warning }"
-    >Warning<div class="value">#E6A23C</div>
+    >Warning<div class="value">{{warning}}</div>
       <div 
           class="bg-color-sub"
         >
@@ -163,7 +163,7 @@ Besides the main color, you need to use different scene colors in different scen
   <el-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box"
     :style="{ background: danger }"
-    >Danger<div class="value">#F56C6C</div>
+    >Danger<div class="value">{{danger}}</div>
       <div 
           class="bg-color-sub"
         >
@@ -180,7 +180,7 @@ Besides the main color, you need to use different scene colors in different scen
   <el-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box"
     :style="{ background: info }"
-    >Info<div class="value">#909399</div>
+    >Info<div class="value">{{info}}</div>
       <div 
           class="bg-color-sub"
         >
