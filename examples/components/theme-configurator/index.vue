@@ -230,6 +230,14 @@ var defConfig = [
         'value': '0 2px 12px 0 rgba(0, 0, 0, 0.1)',
         'category': 'Shadow',
         'order': 1
+      },
+      {
+        'type': 'tableBorder',
+        'name': '1',
+        'key': '$--table-border',
+        'value': '1px',
+        'category': 'Shadow',
+        'order': 1
       }
     ]
   },
@@ -2423,7 +2431,6 @@ export default {
         });
         // 进行主题破解，连接服务器使用本地主题数据替换 defConfig
         let defaultConfig = defConfig;
-        console.log('defaultConfig:', defaultConfig);
         setTimeout(() => {
           if (defaultConfig) {
             this.defaultConfig = defaultConfig;
@@ -2476,7 +2483,7 @@ export default {
     },
     // 获取到配置的主题数据如：颜色等选择器的数据 并 调用 updateVariable 接口方法
     userConfigChange(e) {
-      console.log('魔镜魔镜告诉我：', e);
+      console.log('theme-configurator-index主题数据:', e);
       this.userConfigHistory.push(JSON.stringify(this.userConfig));
       this.userConfigRedoHistory = [];
       this.$set(
@@ -2486,6 +2493,7 @@ export default {
       );
       this.onAction();
     },
+    // 重置
     onReset() {
       this.userConfigRedoHistory = [];
       this.userConfigHistory = [];
@@ -2501,8 +2509,9 @@ export default {
     },
     onAction() {
       this.onUserConfigUpdate(this.userConfig);
-      bus.$emit(ACTION_APPLY_THEME, this.userConfig); // examples/components/theme/loader/index.vue
+      bus.$emit(ACTION_APPLY_THEME, this.userConfig, this.defaultConfig); // examples/components/theme/loader/index.vue
     },
+    // 撤销
     undo() {
       if (this.userConfigHistory.length > 0) {
         this.userConfigRedoHistory.push(JSON.stringify(this.userConfig));
@@ -2510,6 +2519,7 @@ export default {
         this.onAction();
       }
     },
+    // 重做
     redo() {
       if (this.userConfigRedoHistory.length > 0) {
         this.userConfigHistory.push(JSON.stringify(this.userConfig));
@@ -2517,6 +2527,7 @@ export default {
         this.onAction();
       }
     },
+    // 下来选择组件
     onSelectChange(val) {
       bus.$emit(ACTION_COMPONECT_SELECT, val);
       this.selectedComponent = val;

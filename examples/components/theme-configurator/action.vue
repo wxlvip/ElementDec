@@ -4,7 +4,7 @@
       <div class="action-group">
         <!-- 撤销 -->
         <el-tooltip :content="getActionDisplayName('undo')">
-          <img 
+          <img
             src="../../assets/images/icon-undo.svg"
             @click="onUndo"
             :class="{ 'active': userConfigHistory.length > 0 }"
@@ -12,7 +12,7 @@
         </el-tooltip>
         <!-- 重做 -->
         <el-tooltip :content="getActionDisplayName('redo')">
-          <img 
+          <img
             src="../../assets/images/icon-redo.svg"
             @click="onRedo"
             :class="{ 'active': userConfigRedoHistory.length > 0 }"
@@ -20,10 +20,10 @@
         </el-tooltip>
         <div class="button-group">
           <!-- 重置 -->
-          <el-button 
+          <el-button
             class="reset"
-            type="primary" 
-            round 
+            type="primary"
+            round
             size="mini"
             :disabled="isOfficial"
             @click="onReset"
@@ -31,10 +31,10 @@
             {{getActionDisplayName('reset-theme')}}
           </el-button>
           <!-- 下载 -->
-          <el-button 
+          <el-button
             class="download"
-            type="primary" 
-            round 
+            type="primary"
+            round
             size="mini"
             :disabled="downloadDisabled"
             @click="onDownload"
@@ -145,8 +145,10 @@ export default {
       return getActionDisplayName(key);
     },
     onReset() {
+      // 指向 examples/components/theme-configurator/index.vue 的 onReset 方法
       this.$parent.onReset();
     },
+    // 指向 examples/components/theme-configurator/index.vue 的 onDownload 方法
     onDownload() {
       this.downloadDisabled = true;
       this.$parent.onDownload();
