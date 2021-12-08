@@ -16,7 +16,7 @@ const fileSave = require('file-save');
 const lang = process.argv[2];
 // const configPath = path.resolve(__dirname, '../../examples/i18n', lang);
 
-// 添加到 components.json
+// 添加到 components.css
 const componentFile = require('../../examples/i18n/component.json');
 if (componentFile.some(item => item.lang === lang)) {
   console.error(`${lang} already exists.`);

@@ -47,9 +47,10 @@
 
     watch: {
       lang(val) {
-        if (val === 'zh-CN') {
-          this.suggestJump();
-        }
+        // 跳转国内站点提示
+        // if (val === 'zh-CN') {
+        //   this.suggestJump();
+        // }
         localize(val);
       }
     },

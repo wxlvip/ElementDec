@@ -165,6 +165,7 @@
 
 <template>
   <section class="theme-card-item" :class="{'is-hidden': !config || !config.name, 'is-upload': isUpload}">
+    <!-- 上传 -->
     <template v-if="isUpload">
       <div class="upload" @click="uploadClick">
         <div class="upload-action">
@@ -180,6 +181,7 @@
         accept="application/json"
       />
     </template>
+    <!-- 主题面板 -->
     <template v-else>
       <div class="preview">
         <div class="line">
@@ -213,6 +215,7 @@
           </div>
         </div>
       </div>
+      <!-- 其他下拉菜单 -->
       <div class="info">
         <div class="info-center">
           <div class="title">
@@ -305,6 +308,7 @@ export default {
     actionClick(e) {
       this.$emit('action', e, this.config);
     },
+    // 点击主题 Card 上图标事件（查看、复制、编辑、下载）
     iconClick(e) {
       switch (e) {
         case 'preview':
@@ -319,6 +323,7 @@ export default {
             name,
             theme
           });
+          // 跳转到 http://localhost:8085/#/zh-CN/theme/preview
           this.$router.push({
             name: `theme-preview-${this.$route.meta.lang}`,
             params: {

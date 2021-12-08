@@ -20,6 +20,7 @@
 }
 </style>
 <template>
+<!-- 页面左侧区域，第一屏内容 Color && Typography 两部分展示 -->
   <div class="component-preview">
     <h4>Color</h4>
     <div class="color">
@@ -141,22 +142,22 @@
       </el-col>
       <el-col :span="9">
         <div class="title">Example body text</div>
-        <p 
+        <p
           class="paragraph"
-          :style="{ 
+          :style="{
             fontSize: font_size_base,
-            fontWeight: font_weight_primary, 
+            fontWeight: font_weight_primary,
             lineHeight: font_line_height_primary
           }" >
           With MySpace becoming more popular every day, there is the constant need to be different. There are millions of users. If MySpace layouts are chosen well, then you can enhance your profile a great deal.</p>
       </el-col>
       <el-col :span="9">
         <div class="title">Example small text</div>
-        <p 
+        <p
           class="paragraph"
-          :style="{ 
+          :style="{
             fontSize: font_size_small,
-            fontWeight: font_weight_secondary, 
+            fontWeight: font_weight_secondary,
             lineHeight: font_line_height_secondary
           }" >
           Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in front of their desktops, while delivery people scan bar codes with handhelds and workers in the field stay in touch with the central office via their notebooks. Computer hardware weaves itself through the fabric of our lives.</p>

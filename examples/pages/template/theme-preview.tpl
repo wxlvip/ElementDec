@@ -175,6 +175,7 @@ export default {
     this.userTheme = loadUserThemeFromLocal();
     const previewConfig = loadPreviewFromLocal();
     const pageRefer = this.$route.params.refer;
+    // 刷新页面会丢失参数并跳转到 http://localhost:8085/#/zh-CN/theme
     if (!previewConfig || !pageRefer) {
       this.$alert(getActionDisplayName('no-preview-config'), getActionDisplayName('notice'), {
         confirmButtonText: getActionDisplayName('confirm'),

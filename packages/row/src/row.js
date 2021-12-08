@@ -4,17 +4,17 @@ export default {
   componentName: 'ElRow',
 
   props: {
-    tag: {
+    tag: { // 自定义元素标签
       type: String,
       default: 'div'
     },
-    gutter: Number,
-    type: String,
-    justify: {
+    gutter: Number, // 栅格间隔
+    type: String, // 布局模式，可选 flex，现代浏览器下有效
+    justify: { // flex 布局下的水平排列方式
       type: String,
       default: 'start'
     },
-    align: String
+    align: String // flex 布局下的垂直排列方式
   },
 
   computed: {

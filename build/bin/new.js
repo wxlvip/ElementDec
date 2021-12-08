@@ -100,7 +100,7 @@ export declare class El${ComponentName} extends ElementUIComponent {
   }
 ];
 
-// 添加到 components.json
+// 添加到 components.css
 const componentsFile = require('../../components.json');
 // 检查components.json中是否已经存在同名组件
 if (componentsFile[componentname]) {
@@ -109,7 +109,7 @@ if (componentsFile[componentname]) {
 }
 // componentsFile中写入新的组件键值对
 componentsFile[componentname] = `./packages/${componentname}/index.js`;
-fileSave(path.join(__dirname, '../../components.json'))
+fileSave(path.join(__dirname, '../../components.css'))
   .write(JSON.stringify(componentsFile, null, '  '), 'utf8')
   .end('\n');
 

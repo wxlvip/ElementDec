@@ -78,14 +78,14 @@ export default {
 `;
 
 delete Components.font;
-// 获取 components.json 文件中的key ['hello-world']
+// 获取 components.css 文件中的key ['hello-world']
 var ComponentNames = Object.keys(Components);
 
 var includeComponentTemplate = [];
 var installTemplate = [];
 var listTemplate = [];
 
-// 根据 components.json 文件批量生成模板所需的参数
+// 根据 components.css 文件批量生成模板所需的参数
 ComponentNames.forEach(name => {
   // 转化成驼峰命名 foo-bar >> FooBar
   var componentName = uppercamelcase(name);

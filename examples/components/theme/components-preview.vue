@@ -37,6 +37,7 @@
 }
 </style>
 <template>
+  <!-- 页面左侧区域，第二屏内容及更多内容 -->
   <div class="component-preview">
     <h4>Button</h4>
     <el-row class="demo-line">
