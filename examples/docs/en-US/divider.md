@@ -13,6 +13,8 @@ Divide the text of different paragraphs.
     <span>I sit at my window this morning where the world like a passer-by stops for a moment, nods to me and goes.</span>
     <el-divider></el-divider>
     <span>There little thoughts are the rustle of leaves; they have their whisper of joy in my mind.</span>
+    <el-divider line-type="dashed"></el-divider>
+    <span>I sit at my window this morning where the world like a passer-by stops for a moment, nods to me and goes.</span>
   </div>
 </template>
 ```
@@ -33,6 +35,12 @@ You can customize the content on the divider line.
     <el-divider><i class="el-icon-star-on"></i></el-divider>
     <span>My wishes are fools, they shout across thy song, my Master. Let me but listen.</span>
     <el-divider content-position="right">Rabindranath Tagore</el-divider>
+    <span>What you are you do not see, what you see is your shadow. </span>
+    <el-divider line-type="dashed" content-position="left">Rabindranath Tagore</el-divider>
+    <span>I cannot choose the best. The best chooses me.</span>
+    <el-divider line-type="dashed"><i class="el-icon-star-on"></i></el-divider>
+    <span>My wishes are fools, they shout across thy song, my Master. Let me but listen.</span>
+    <el-divider line-type="dashed" content-position="right">Rabindranath Tagore</el-divider>
   </div>
 </template>
 ```
@@ -59,3 +67,4 @@ You can customize the content on the divider line.
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | direction      | Set divider's direction  | string  |          horizontal / vertical           |    horizontal     |
 | content-position      | customize the content on the divider line | String  |  left / right / center  |  center |
+| line-type      | Style split lines  | string  | solid / dashed |  solid |

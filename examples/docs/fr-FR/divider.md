@@ -13,6 +13,8 @@ Séparer le texte de deux paragraphes.
     <span>Je suis assis à ma fenêtre ce matin où le monde, tel un passant, s’arrête un instant, me fait signe de la tête et part.</span>
     <el-divider></el-divider>
     <span>Les petites pensées sont le bruissement des feuilles; ils ont leur murmure de joie dans mon esprit.</span>
+    <el-divider line-type="dashed" ></el-divider>
+    <span>Je suis assis à ma fenêtre ce matin où le monde, tel un passant, s’arrête un instant, me fait signe de la tête et part.</span>
   </div>
 </template>
 ```
@@ -32,6 +34,13 @@ Vous ajouter du contenu dans la ligne de séparation.
     <el-divider><i class="el-icon-star-on"></i></el-divider>
     <span>Mes souhaits sont des imbéciles, ils crient à travers ta chanson, mon Maître. Laisse-moi mais écoute.</span>
     <el-divider content-position="right">Rabindranath Tagore</el-divider>
+    <span>Vous ne voyez pas ce que vous êtes, ce que vous voyez est votre ombre.</span>
+    <el-divider line-type="dashed" content-position="left">Rabindranath Tagore</el-divider>
+    <span>Je ne peux pas choisir le meilleur. Le meilleur me choisit.</span>
+    <el-divider line-type="dashed" >Rabindranath Tagore</el-divider>
+    <span>Mes souhaits sont des imbéciles, ils crient à travers ta chanson, mon Maître. Laisse-moi mais écoute.</span>
+    <el-divider line-type="dashed" content-position="right">Rabindranath Tagore</el-divider>
+    <span>Vous ne voyez pas ce que vous êtes, ce que vous voyez est votre ombre.</span>
   </div>
 </template>
 ```
@@ -59,3 +68,4 @@ Vous ajouter du contenu dans la ligne de séparation.
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | direction      | Règle la direction du séparateur.  | string  |          horizontal / vertical           |    horizontal     |
 | content-position      | Personnalise le contenu du séparateur. | String  |  left / right / center  |  center |
+| line-type      | Styliser les lignes de division  | string  | solid / dashed |  solid |

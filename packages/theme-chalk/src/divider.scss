@@ -2,9 +2,8 @@
 @import "mixins/mixins";
 
 @include b(divider) {
-  background-color: $--border-color-base;
   position: relative;
-
+  background-color: $--border-color-base;
   @include m(horizontal) {
     display: block;
     height: 1px;
@@ -20,6 +19,68 @@
     vertical-align: middle;
     position: relative;
   }
+
+  // dashed (破折线式边框)
+  @include when(dashed) {
+    border-width: 1px 0 0 0;
+    border-color: $--border-color-base;
+    border-top-style: dashed;
+    background: transparent;
+  }
+
+  //dotted (点线式边框)
+  //@include when(dotted) {
+  //  border-color: $--border-color-base;
+  //  border-width: 1px 0 0 0;
+  //  border-top-style: dotted;
+  //  transform:scaleY(0.5);
+  //  background: transparent;
+  //}
+
+  // double (双线式边框)
+  //@include when(double) {
+  //  border-color: $--border-color-base;
+  //  border-width: 1px 0 0 0;
+  //  border-top-style: double;
+  //  transform:scaleY(0.5);
+  //  background: transparent;
+  //}
+
+  // groove (槽线式边框)
+  //@include when(groove) {
+  //  border-color: $--border-color-base;
+  //  border-width: 1px 0 0 0;
+  //  border-top-style: groove;
+  //  transform:scaleY(0.5);
+  //  background: transparent;
+  //}
+
+  // ridge(脊线式边框)
+  //@include when(ridge) {
+  //  border-color: $--border-color-base;
+  //  border-width: 1px 0 0 0;
+  //  border-top-style: ridge;
+  //  transform:scaleY(0.5);
+  //  background: transparent;
+  //}
+
+  // inset (内嵌效果的边框)
+  //@include when(inset) {
+  //  border-color: $--border-color-base;
+  //  border-width: 1px 0 0 0;
+  //  border-top-style: inset;
+  //  transform:scaleY(0.5);
+  //  background: transparent;
+  //}
+
+  // outset (突起效果的边框)
+  //@include when(outset) {
+  //  border-color: $--border-color-base;
+  //  border-width: 1px 0 0 0;
+  //  border-top-style: outset;
+  //  transform:scaleY(0.5);
+  //  background: transparent;
+  //}
 
   @include e(text) {
     position: absolute;
