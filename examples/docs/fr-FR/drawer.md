@@ -80,6 +80,126 @@ When you no longer need a title, you can remove title from drawer.
 ```
 :::
 
+### Title Sans ligne de division
+
+Lorsque vous n'avez pas besoin d'une ligne de division, vous pouvez également supprimer la ligne de division de titre
+
+:::demo Lorsque vous rencontrez une scène Spline Line sans titre, vous pouvez désactiver l'affichage Spline Line du titre en utilisant l'attribut 'headerline'. Pour l'accessibilité de l'utilisateur, assurez - vous de définir la valeur 'title'
+
+```html
+<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+    open
+</el-button>
+
+<el-drawer
+  title="I am the title"
+  :visible.sync="drawer"
+  :header-divider="false">
+  <span>Hi there!</span>
+</el-drawer>
+
+<script>
+  export default {
+    data() {
+      return {
+        drawer: false,
+      };
+    }
+  };
+</script>
+```
+:::
+
+### Title Affichage Central
+
+Lorsque vous voulez que le titre soit centré, vous pouvez le définir avec la propriété 'headercenter'. La valeur par défaut est affichée à gauche.
+
+:::demo Lorsque vous rencontrez une scène qui nécessite un affichage centré sur le titre, vous pouvez activer l'affichage centré sur le titre en utilisant l'attribut 'headercenter'. Pour l'accessibilité de l'utilisateur, assurez - vous de définir la valeur de 'title'
+
+```html
+<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+    open
+</el-button>
+
+<el-drawer
+  title="I am the title"
+  :visible.sync="drawer"
+  :header-center="true">
+  <span>Hi there!</span>
+</el-drawer>
+
+<script>
+  export default {
+    data() {
+      return {
+        drawer: false,
+      };
+    }
+  };
+</script>
+```
+:::
+
+### Title Icône de gauche
+
+Lorsque vous voulez afficher une petite icône devant le titre, vous pouvez l'activer avec l'attribut 'headericon'. La valeur par défaut n'est pas affichée.
+
+:::demo Lorsque vous rencontrez une scène qui nécessite une petite icône sur le côté gauche du titre, vous pouvez activer l'affichage de la petite icône du titre en utilisant l'attribut 'headericon'. L'icône personnalisée n'est pas prise en charge pour le moment. Pour l'accessibilité de l'utilisateur, assurez - vous de définir la valeur 'title'
+
+```html
+<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+    open
+</el-button>
+
+<el-drawer
+  title="I am the title"
+  :visible.sync="drawer"
+  :header-icon="true">
+  <span>Hi there!</span>
+</el-drawer>
+
+<script>
+  export default {
+    data() {
+      return {
+        drawer: false,
+      };
+    }
+  };
+</script>
+```
+:::
+
+### Personnaliser le contenu du titre
+
+Si vous avez des scénarios d'utilisation plus spécifiques pour les styles de titres, vous pouvez les définir en utilisant des fentes nommées `slot="title"` 。
+
+:::demo Lorsque vous rencontrez une scène fortement personnalisée avec un style de titre, vous pouvez utiliser la fente nommée `<template slot="title"><span>自定义标题</span></template>` Le titre est très personnalisé. Pour l'accessibilité de l'utilisateur, assurez - vous de définir la valeur 'title'。
+
+```html
+<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+    open
+</el-button>
+
+<el-drawer
+  title="I am the title"
+  :visible.sync="drawer">
+    <template slot="title"><span>du<u style="color:red;">titre</u></span></template>
+  <span>Hi there!</span>
+</el-drawer>
+
+<script>
+  export default {
+    data() {
+      return {
+        drawer: false,
+      };
+    }
+  };
+</script>
+```
+:::
+
 ### Customization Content
 
 Like `Dialog`, `Drawer` can do many diverse interaction as you wanted.
@@ -281,6 +401,9 @@ If the variable bound to `visible` is managed in Vuex store, the `.sync` can not
 | visible | Should Drawer be displayed, also support the `.sync` notation | boolean | — | false |
 | wrapperClosable | Indicates whether user can close Drawer by clicking the shadowing layer. | boolean | - | true |
 | withHeader | Flag that controls the header section's existance, default to true, when withHeader set to false, both `title attribute` and `title slot` won't work | boolean | - | true |
+| headerDivider |Contrôle si la ligne de division de la barre d'en - tête est affichée. La valeur par défaut est vraie. Lorsque cette valeur est fausse, la ligne de division n'est pas affichée. | boolean <br/>| — | true |
+| headerCenter | Contrôle si le titre de la barre d'en - tête est centré. Par défaut, il est faux. Lorsque cet élément est vrai, le titre est centré.| boolean <br/><br/>| — | false |
+| headerIcon |Contrôle si l'icône titre de la barre d'en - tête est affichée, par défaut à false, et si l'élément est vrai, l'icône est affichée | boolean | — | false |
 
 ### Drawer Slot
 

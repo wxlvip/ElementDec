@@ -24,7 +24,12 @@
           role="dialog"
           tabindex="-1"
           >
-          <header class="el-drawer__header" id="el-drawer__title" v-if="withHeader">
+          <header
+              v-if="withHeader"
+              id="el-drawer__title"
+              :class="['el-drawer__header', headerDivider?`is-divider`:'', headerCenter?`is-center`:'',
+              headerIcon?`is-icon`:'']"
+          >
             <slot name="title">
               <span role="heading" :title="title">{{ title }}</span>
             </slot>
@@ -110,6 +115,18 @@ export default {
     withHeader: {
       type: Boolean,
       default: true
+    },
+    headerDivider: {
+      type: Boolean,
+      default: true
+    },
+    headerCenter: {
+      type: Boolean,
+      default: false
+    },
+    headerIcon: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

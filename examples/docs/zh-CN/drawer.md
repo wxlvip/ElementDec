@@ -80,6 +80,125 @@
 ```
 :::
 
+### Title 不带分割线
+
+当你不需要分割线的时候, 你还可以去除标题分割线
+
+:::demo 当遇到不需要 title 的分割线场景时, 可以通过 `headerLine` 这个属性来关闭掉 title 的分割线显示, 为了用户的可访问性, 请务必设定 `title` 的值
+
+```html
+<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+  点我打开
+</el-button>
+
+<el-drawer
+  title="我是标题"
+  :visible.sync="drawer"
+  :header-divider="false">
+  <span>我与分割线分手啦!</span>
+</el-drawer>
+
+<script>
+  export default {
+    data() {
+      return {
+        drawer: false,
+      };
+    }
+  };
+</script>
+```
+:::
+
+### Title 居中显示
+
+当你想将标题设置为居中显示时，可以通过 `headerCenter` 这个属性来设置。默认是居左显示。
+
+:::demo 当遇到需要 title 居中显示的场景时, 可以通过 `headerCenter` 这个属性来开启 title 的居中显示, 为了用户的可访问性, 请务必设定 `title` 的值
+
+```html
+<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+  点我打开
+</el-button>
+
+<el-drawer
+  title="我是标题"
+  :visible.sync="drawer"
+  :header-center="true">
+  <span>啦啦啦，看我的标题居中啦!</span>
+</el-drawer>
+
+<script>
+  export default {
+    data() {
+      return {
+        drawer: false,
+      };
+    }
+  };
+</script>
+```
+:::
+
+### Title 左侧图标
+
+当你想将标题前显示个小图标时，可以通过 `headerIcon` 这个属性来开启。默认不显示。
+
+:::demo 当遇到需要 title 左侧有个小图标的场景时, 可以通过 `headerIcon` 这个属性来开启 title 的小图标显示, 暂不支持自定义 Icon, 为了用户的可访问性, 请务必设定 `title` 的值
+
+```html
+<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+  点我打开
+</el-button>
+
+<el-drawer
+  title="我是标题"
+  :visible.sync="drawer"
+  :header-icon="true">
+  <span>啦啦啦，看我的标题左侧有个小图标耶!</span>
+</el-drawer>
+
+<script>
+  export default {
+    data() {
+      return {
+        drawer: false,
+      };
+    }
+  };
+</script>
+```
+:::
+
+### 自定义 Title 内容
+
+如果对标题样式有更特殊的使用场景，可以通过具名插槽 `slot="title"` 来设置。
+
+:::demo 当遇到标题样式高度定制的场景时, 可以通过具名插槽 `<template slot="title"><span>自定义标题</span></template>` 对标题进行高度定制, 为了用户的可访问性, 请务必设定 `title` 的值。
+
+```html
+<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+  点我打开
+</el-button>
+
+<el-drawer
+  title="我是标题"
+  :visible.sync="drawer">
+    <template slot="title"><span>自定义<u style="color:red;">标题</u></span></template>
+  <span>啦啦啦，看我自定义的标题内容!</span>
+</el-drawer>
+
+<script>
+  export default {
+    data() {
+      return {
+        drawer: false,
+      };
+    }
+  };
+</script>
+```
+:::
 
 ### 自定义内容
 
@@ -267,22 +386,25 @@ Drawer 提供一个 `destroyOnClose` API, 用来在关闭 Drawer 时销毁子组
 
 ### Drawer Attributes
 
-| 参数      | 说明          | 类型      | 可选值                           | 默认值  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| append-to-body     | Drawer 自身是否插入至 body 元素上。嵌套的 Drawer 必须指定该属性并赋值为 true   | boolean   | — | false |
-| before-close | 关闭前的回调，会暂停 Drawer 的关闭 | function(done)，done 用于关闭 Drawer | — | — |
-| close-on-press-escape | 是否可以通过按下 ESC 关闭 Drawer | boolean    | — | true |
-| custom-class      | Drawer 的自定义类名 | string    | — | — |
-| destroy-on-close | 控制是否在关闭 Drawer 之后将子元素全部销毁 | boolean | - | false |
-| modal     | 是否需要遮罩层   | boolean   | — | true |
-| modal-append-to-body     | 遮罩层是否插入至 body 元素上，若为 false，则遮罩层会插入至 Drawer 的父元素上   | boolean   | — | true |
-| direction | Drawer 打开的方向 | Direction | rtl / ltr / ttb / btt | rtl |
-| show-close | 是否显示关闭按钮 | boolean    | — | true |
-| size | Drawer 窗体的大小, 当使用 `number` 类型时, 以像素为单位, 当使用 `string` 类型时, 请传入 'x%', 否则便会以 `number` 类型解释 | number / string | - | '30%' |
-| title     | Drawer 的标题，也可通过具名 slot （见下表）传入 | string    | — | — |
-| visible   | 是否显示 Drawer，支持 .sync 修饰符 | boolean | — | false |
-| wrapperClosable | 点击遮罩层是否可以关闭 Drawer | boolean | - | true |
-| withHeader | 控制是否显示 header 栏, 默认为 true, 当此项为 false 时, title attribute 和 title slot 均不生效 | boolean | - | true |
+| 参数      | 说明                                                                                      | 类型      | 可选值                           | 默认值  |
+|---------- |-----------------------------------------------------------------------------------------|---------- |--------------------------------  |-------- |
+| append-to-body     | Drawer 自身是否插入至 body 元素上。嵌套的 Drawer 必须指定该属性并赋值为 true                                     | boolean   | — | false |
+| before-close | 关闭前的回调，会暂停 Drawer 的关闭                                                                   | function(done)，done 用于关闭 Drawer | — | — |
+| close-on-press-escape | 是否可以通过按下 ESC 关闭 Drawer                                                                  | boolean    | — | true |
+| custom-class      | Drawer 的自定义类名                                                                           | string    | — | — |
+| destroy-on-close | 控制是否在关闭 Drawer 之后将子元素全部销毁                                                               | boolean | — | false |
+| modal     | 是否需要遮罩层                                                                                 | boolean   | — | true |
+| modal-append-to-body     | 遮罩层是否插入至 body 元素上，若为 false，则遮罩层会插入至 Drawer 的父元素上                                        | boolean   | — | true |
+| direction | Drawer 打开的方向                                                                            | Direction | rtl / ltr / ttb / btt | rtl |
+| show-close | 是否显示关闭按钮                                                                                | boolean    | — | true |
+| size | Drawer 窗体的大小, 当使用 `number` 类型时, 以像素为单位, 当使用 `string` 类型时, 请传入 'x%', 否则便会以 `number` 类型解释 | number / string | — | '30%' |
+| title     | Drawer 的标题，也可通过具名 slot （见下表）传入                                                          | string    | — | — |
+| visible   | 是否显示 Drawer，支持 .sync 修饰符                                                                | boolean | — | false |
+| wrapperClosable | 点击遮罩层是否可以关闭 Drawer                                                                      | boolean | — | true |
+| withHeader | 控制是否显示 header 栏, 默认为 true, 当此项为 false 时, title attribute 和 title slot 均不生效              | boolean | — | true |
+| headerDivider | 控制是否显示 header 栏分割线, 默认为 true, 当此项为 false 时, 分割线不显示                                      | boolean <br/>| — | true |
+| headerCenter | 控制是否使 header 栏标题居中, 默认为 false, 当此项为 true 时, 标题居中显示                                      | boolean <br/><br/>| — | false |
+| headerIcon | 控制是否显示 header 栏标题图标, 默认为 false, 当此项为 true 时, 图标显示                                       | boolean | — | false |
 
 ### Drawer Slot
 

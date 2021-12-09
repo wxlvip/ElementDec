@@ -1,5 +1,5 @@
-@import "mixins/mixins";
 @import "common/var";
+@import "mixins/mixins";
 
 @keyframes el-drawer-fade-in {
   0% {
@@ -140,11 +140,27 @@ $directions: rtl, ltr, ttb, btt;
     align-items: center;
     color: rgb(114, 118, 123);
     display: flex;
-    margin-bottom: 32px;
-    padding: $--dialog-padding-primary;
-    padding-bottom: 0;
+    padding: 12px 10px;
+    width: 100%;
+    line-height: 1;
+    font-size: 16px;
     & > :first-child {
       flex: 1;
+    }
+
+    @include when(divider){
+      border-bottom: 1px solid #e8eaec;
+    }
+
+    @include when(center){
+      text-align: center;
+    }
+
+    @include when(icon){
+      & > :first-child {
+        border-left: 4px solid #0990EC;
+        padding-left: 5px;
+      }
     }
   }
 
@@ -161,6 +177,7 @@ $directions: rtl, ltr, ttb, btt;
     font-size: $--font-size-extra-large;
     color: inherit;
     background-color: transparent;
+    margin-right: 12px;
   }
 
   &__body {

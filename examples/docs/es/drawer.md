@@ -80,6 +80,126 @@ Si no necesitas el titulo lo puedes eliminar del drawer.
 ```
 :::
 
+### Title Without split line
+
+You can also remove the title divider when you don't need it
+
+:::demo When you encounter a split line scene that does not need a title, you can turn off the split line display of the title through the 'headerline' attribute. For user accessibility, be sure to set the value of 'title'
+
+```html
+<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+    open
+</el-button>
+
+<el-drawer
+  title="I am the title"
+  :visible.sync="drawer"
+  :header-divider="false">
+  <span>Hi there!</span>
+</el-drawer>
+
+<script>
+  export default {
+    data() {
+      return {
+        drawer: false,
+      };
+    }
+  };
+</script>
+```
+:::
+
+### Title Center display
+
+When you want to center the title, you can set it through the 'headercenter' attribute. The default is left display.
+
+:::demo When you encounter a scene where you need to center the title, you can turn on the center display of the title through the 'headercenter' attribute. For user accessibility, be sure to set the value of 'title'
+
+```html
+<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+    open
+</el-button>
+
+<el-drawer
+  title="I am the title"
+  :visible.sync="drawer"
+  :header-center="true">
+  <span>Hi there!</span>
+</el-drawer>
+
+<script>
+  export default {
+    data() {
+      return {
+        drawer: false,
+      };
+    }
+  };
+</script>
+```
+:::
+
+### Title Left Icon
+
+When you want to display a small icon in front of the title, you can turn it on through the 'headericon' attribute. Not displayed by default.
+
+:::demo When you encounter a scene that requires a small icon on the left side of the title, you can turn on the display of the small icon of the title through the 'headericon' attribute. Custom icon is not supported temporarily. For user accessibility, please be sure to set the value of 'title'
+
+```html
+<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+    open
+</el-button>
+
+<el-drawer
+  title="I am the title"
+  :visible.sync="drawer"
+  :header-icon="true">
+  <span>Hi there!</span>
+</el-drawer>
+
+<script>
+  export default {
+    data() {
+      return {
+        drawer: false,
+      };
+    }
+  };
+</script>
+```
+:::
+
+### Customize title content
+
+If there are more special usage scenarios for the title style, it can be set through the named slot `slot = "title"`.
+
+:::demo When you encounter a scene where the title style is highly customized, you can highly customize the title through the named slot `<template slot="title"><span>custom title</span></template>` for user accessibility, be sure to set the value of 'title'.
+
+```html
+<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+    open
+</el-button>
+
+<el-drawer
+  title="I am the title"
+  :visible.sync="drawer">
+    <template slot="title"><span>custom<u style="color:red;">title</u></span></template>
+  <span>Hi there!</span>
+</el-drawer>
+
+<script>
+  export default {
+    data() {
+      return {
+        drawer: false,
+      };
+    }
+  };
+</script>
+```
+:::
+
 ### Personalizar el contenido
 
 Al igual que `Dialog`, `Drawer` puede hacer muchas interacciones diversas.
@@ -281,6 +401,9 @@ Si la variable `visible` se gestiona en el almacén de Vuex, el `.sync` no puede
 | visible | Si se muestra el Drawer, también soporta la notación `.sync` | boolean | — | false |
 | wrapperClosable | Indica si el usuario puede cerrar el Drawer haciendo clic en la capa de sombreado. | boolean | - | true |
 | withHeader | Indica si la sección header existirá, por defecto es true, cuando es false no tienen efecto, ambos, `title attribute` y `title slot` | boolean | - | true |
+| headerDivider | Controls whether the header bar split line is displayed. The default is true. When this item is false, the split line is not displayed | boolean <br/>| — | true |
+| headerCenter | Controls whether to center the header column title. The default is false. When this item is true, the title will be displayed in the center | boolean <br/><br/>| — | false |
+| headerIcon | Controls whether the header bar Title icon is displayed. The default is false. When this item is true, the icon is displayed | boolean | — | false |
 
 ### Drawer Slot's
 
