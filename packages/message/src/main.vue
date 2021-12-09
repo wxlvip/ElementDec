@@ -15,10 +15,16 @@
       role="alert">
       <i :class="iconClass" v-if="iconClass"></i>
       <i :class="typeClass" v-else></i>
-      <slot>
-        <p v-if="!dangerouslyUseHTMLString" class="el-message__content">{{ message }}</p>
-        <p v-else v-html="message" class="el-message__content"></p>
-      </slot>
+
+      <div class="el-message__content">
+        <span class="el-message__title" v-if="title">
+          <slot name="title">{{ title }}</slot>
+        </span>
+        <slot>
+          <p v-if="!dangerouslyUseHTMLString" class="el-message__description">{{ message }}</p>
+          <p v-else v-html="message" class="el-message__description"></p>
+        </slot>
+      </div>
       <i v-if="showClose" class="el-message__closeBtn el-icon-close" @click="close"></i>
     </div>
   </transition>
@@ -47,7 +53,8 @@
         verticalOffset: 20,
         timer: null,
         dangerouslyUseHTMLString: false,
-        center: false
+        center: false,
+        title: ''
       };
     },
 

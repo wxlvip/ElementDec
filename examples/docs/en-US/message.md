@@ -155,6 +155,60 @@ Use the `center` attribute to center the text.
 ```
 :::
 
+### Add Title
+
+You can add a title。
+
+:::demo The default message has no title. If you need a message with a title, you can use the 'title' field。
+```html
+<template>
+    <el-button :plain="true" @click="open1">message</el-button>
+    <el-button :plain="true" @click="open2">success</el-button>
+    <el-button :plain="true" @click="open3">warning</el-button>
+    <el-button :plain="true" @click="open4">error</el-button>
+</template>
+
+<script>
+  export default {
+    methods: {
+      open1() {
+        this.$message({
+          showClose: true,
+          title: 'title',
+          message: 'This is a message.'
+        });
+      },
+
+      open2() {
+        this.$message({
+          showClose: true,
+          title: 'title',
+          message: 'Congrats, this is a success message.',
+          type: 'success'
+        });
+      },
+
+      open3() {
+        this.$message({
+          showClose: true,
+          message: 'Warning, this is a warning message.',
+          type: 'warning'
+        });
+      },
+
+      open4() {
+        this.$message({
+          showClose: true,
+          message: 'Oops, this is a error message.',
+          type: 'error'
+        });
+      }
+    }
+  }
+</script>
+```
+:::
+
 ### Use HTML string
 `message` supports HTML string.
 
@@ -201,6 +255,7 @@ In this case you should call `Message(options)`. We have also registered methods
 ### Options
 | Attribute      | Description          | Type      | Accepted Values       | Default  |
 |---------- |-------------- |---------- |--------------------------------  |-------- |
+| title                    | title        | string | — |  —  |
 | message | message text | string / VNode | — | — |
 | type | message type | string | success/warning/info/error | info |
 | iconClass | custom icon's class, overrides `type` | string | — | — |

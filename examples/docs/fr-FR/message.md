@@ -156,6 +156,60 @@ Utilisez l'attribut `center` pour centrer le texte.
 ```
 :::
 
+### Avec Titre
+
+Peut ajouter un titre。
+
+:::demo Le message par défaut n'a pas de titre. Si vous avez besoin d'un message avec un titre, vous pouvez utiliser le champ 'title'。
+```html
+<template>
+    <el-button :plain="true" @click="open1">message</el-button>
+    <el-button :plain="true" @click="open2">success</el-button>
+    <el-button :plain="true" @click="open3">warning</el-button>
+    <el-button :plain="true" @click="open4">error</el-button>
+</template>
+
+<script>
+  export default {
+    methods: {
+      open1() {
+        this.$message({
+          showClose: true,
+          title: 'title',
+          message: 'Ceci est un message.'
+        });
+      },
+
+      open2() {
+        this.$message({
+          showClose: true,
+          title: 'title',
+          message: 'Félicitations, ceci est un message de succès.',
+          type: 'success'
+        });
+      },
+
+      open3() {
+        this.$message({
+          showClose: true,
+          message: 'Attention, ceci est un avertissement.',
+          type: 'warning'
+        });
+      },
+
+      open4() {
+        this.$message({
+          showClose: true,
+          message: 'Ouups, ceci est une erreur.',
+          type: 'error'
+        });
+      }
+    }
+  }
+</script>
+```
+:::
+
 ### Utiliser du HTML
 
 `message` supporte le HTML.
@@ -202,13 +256,14 @@ Dans ce cas il faudra appeler `Message(options)`. Les méthodes des différents 
 
 ### Options
 
-| Attribut      | Description          | Type      | Valeurs acceptées       | Défaut  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| message | Texte du message. | string / VNode | — | — |
-| type | Type du message. | string | success/warning/info/error | info |
-| iconClass | Classe de l'icône, écrase `type`. | string | — | — |
-| dangerouslyUseHTMLString | Si `message` doit être traité comme du HTML. | boolean | — | false |
-| customClass | Nom de classe pour Message. | string | — | — |
+| Attribut      | Description                                                         | Type      | Valeurs acceptées       | Défaut  |
+|---------- |---------------------------------------------------------------------|---------- |--------------------------------  |-------- |
+| title                    | title        | string | — |  —  |
+| message | Texte du message.    | string / VNode | — | — |
+| type | Type du message.    | string | success/warning/info/error | info |
+| iconClass | Classe de l'icône, écrase `type`.       | string | — | — |
+| dangerouslyUseHTMLString | Si `message` doit être traité comme du HTML.     | boolean | — | false |
+| customClass | Nom de classe pour Message.           | string | — | — |
 | duration | La durée d'affichage, en millisecondes. Si 0, la durée est infinie. | number | — | 3000 |
 | showClose | Si un bouton de fermeture doit être affiché. | boolean | — | false |
 | center | Si le texte doit être centré. | boolean | — | false |
