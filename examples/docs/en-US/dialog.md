@@ -48,6 +48,177 @@ Dialog pops up a dialog box, and it's quite customizable.
 `before-close` only works when user clicks the close icon or the backdrop. If you have buttons that close the Dialog in the `footer` named slot, you can add what you would do with `before-close` in the buttons' click event handler.
 :::
 
+### Title centered
+
+The dialog title is centered.
+
+:::demo The 'header' attribute needs to be set. When it is' center ', the dialog title is displayed in the center. The precondition is to set the title.
+
+```html
+<el-button type="text" @click="dialogVisible = true">click to open the Dialog</el-button>
+
+<el-dialog
+  title="Tips"
+  :visible.sync="dialogVisible"
+  width="30%"
+  header-style="center"
+  :before-close="handleClose">
+  <span>This is a message</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">Cancel</el-button>
+    <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+  </span>
+</el-dialog>
+
+<script>
+  export default {
+    data() {
+      return {
+        dialogVisible: false
+      };
+    },
+    methods: {
+      handleClose(done) {
+        this.$confirm('Are you sure to close this dialog?')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      }
+    }
+  };
+</script>
+```
+:::
+
+### Title divider
+
+Dialog title sets the split line.
+
+:::demo The 'header' attribute needs to be set. When it is' divider ', the dialog title is displayed in the form of a split line. When it is' divider center', the dialog header has a split line and the text is centered. The precondition is to set the title.
+
+```html
+<el-button type="text" @click="dialogVisible = true">click to open the Dialog</el-button>
+
+<el-dialog
+  title="Tips"
+  :visible.sync="dialogVisible"
+  width="30%"
+  header-style="divider"
+  :before-close="handleClose">
+  <span>This is a message</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">Cancel</el-button>
+    <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+  </span>
+</el-dialog>
+
+<script>
+  export default {
+    data() {
+      return {
+        dialogVisible: false
+      };
+    },
+    methods: {
+      handleClose(done) {
+        this.$confirm('Are you sure to close this dialog?')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      }
+    }
+  };
+</script>
+```
+:::
+
+### Title background color
+
+Dialog is displayed in the background color style, and the title can be centered.
+
+:::demo The 'header' attribute needs to be set. When it is' BG ', the dialog header has a background color. When it is' BG center', the dialog header has a background color and the text is centered. The precondition is to set the title.
+
+```html
+<el-button type="text" @click="dialogVisible = true">click to open the Dialog</el-button>
+
+<el-dialog
+  title="Tips"
+  :visible.sync="dialogVisible"
+  width="30%"
+  header-style="bg"
+  :before-close="handleClose">
+  <span>This is a message</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">Cancel</el-button>
+    <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+  </span>
+</el-dialog>
+<script>
+  export default {
+    data() {
+      return {
+        dialogVisible: false
+      };
+    },
+    methods: {
+      handleClose(done) {
+        this.$confirm('Are you sure to close this dialog?')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      }
+    }
+  };
+</script>
+```
+:::
+
+### Footer button position
+
+The dialog footer button can be set as required, right (default), center and left.
+
+:::demo The 'footerstyle' attribute needs to be set. When it is' center ', the footer content is displayed in the center, and when it is' left', the footer content is displayed on the left. The precondition is to set footer.
+
+```html
+<el-button type="text" @click="dialogVisible = true">click to open the Dialog</el-button>
+
+<el-dialog
+  title="Tips"
+  :visible.sync="dialogVisible"
+  width="30%"
+  header-style="divider"
+  footer-style="left"
+  :before-close="handleClose">
+  <span>This is a message</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">Cancel</el-button>
+    <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+  </span>
+</el-dialog>
+<script>
+  export default {
+    data() {
+      return {
+        dialogVisible: false
+      };
+    },
+    methods: {
+      handleClose(done) {
+        this.$confirm('Are you sure to close this dialog?')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      }
+    }
+  };
+</script>
+```
+:::
+
 ### Customizations
 
 The content of Dialog can be anything, even a table or a form. This example shows how to use Element Table and Form with Dialog。
@@ -222,6 +393,9 @@ If the variable bound to `visible` is managed in Vuex store, the `.sync` can not
 | before-close | callback before Dialog closes, and it will prevent Dialog from closing | function(done)，done is used to close the Dialog | — | — |
 | center | whether to align the header and footer in center | boolean | — | false |
 | destroy-on-close | Destroy elements in Dialog when closed   | boolean | — | false |
+| header-style          | Header style | string | center/divider/divider-center/bg/bg-center | — |
+| footer-style          | footer style  | string | center/left                                | — |
+
 
 ### Slot
 

@@ -15,10 +15,11 @@
         :class="['el-dialog', { 'is-fullscreen': fullscreen, 'el-dialog--center': center }, customClass]"
         ref="dialog"
         :style="style">
-        <div class="el-dialog__header">
+        <div :class="['el-dialog__header', headerStyle ? `is-${headerStyle}` : '']">
           <slot name="title">
             <span class="el-dialog__title">{{ title }}</span>
           </slot>
+          <!-- 关闭按钮 -->
           <button
             type="button"
             class="el-dialog__headerbtn"
@@ -29,7 +30,7 @@
           </button>
         </div>
         <div class="el-dialog__body" v-if="rendered"><slot></slot></div>
-        <div class="el-dialog__footer" v-if="$slots.footer">
+        <div :class="['el-dialog__footer', footerStyle ? `is-${footerStyle}` : '']" v-if="$slots.footer">
           <slot name="footer"></slot>
         </div>
       </div>
@@ -107,7 +108,16 @@
         default: false
       },
 
-      destroyOnClose: Boolean
+      destroyOnClose: Boolean,
+      // center, divider 分割线, divider-center 分割线-文字居中, bg 带有背景色, bg-center 带背景色文字居中
+      headerStyle: {
+        type: String,
+        default: ''
+      },
+      footerStyle: {
+        type: String,
+        default: ''
+      }
     },
 
     data() {

@@ -51,6 +51,177 @@ Dialog abre una caja de diálogo, y es bastante personalizable.
 
 :::
 
+### Título centrado
+
+El título del diálogo está centrado.
+
+:::demo Es necesario establecer la propiedad 'Header' para que el título del diálogo se muestre centrado cuando 'center'. La condición previa es establecer el título.
+
+```html
+<el-button type="text" @click="dialogVisible = true">click to open the Dialog</el-button>
+
+<el-dialog
+  title="Tips"
+  :visible.sync="dialogVisible"
+  width="30%"
+  header-style="center"
+  :before-close="handleClose">
+  <span>This is a message</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">Cancel</el-button>
+    <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+  </span>
+</el-dialog>
+
+<script>
+  export default {
+    data() {
+      return {
+        dialogVisible: false
+      };
+    },
+    methods: {
+      handleClose(done) {
+        this.$confirm('Are you sure to close this dialog?')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      }
+    }
+  };
+</script>
+```
+:::
+
+### Línea de división del título
+
+El título del diálogo establece la línea de División.
+
+:::demo Es necesario establecer la propiedad 'Header', el título del diálogo se muestra como una línea dividida cuando 'divisor' y la cabecera del diálogo tiene una línea dividida y el texto está centrado cuando 'divisor - Centro'. La condición previa es establecer el título.
+
+```html
+<el-button type="text" @click="dialogVisible = true">click to open the Dialog</el-button>
+
+<el-dialog
+  title="Tips"
+  :visible.sync="dialogVisible"
+  width="30%"
+  header-style="divider"
+  :before-close="handleClose">
+  <span>This is a message</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">Cancel</el-button>
+    <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+  </span>
+</el-dialog>
+
+<script>
+  export default {
+    data() {
+      return {
+        dialogVisible: false
+      };
+    },
+    methods: {
+      handleClose(done) {
+        this.$confirm('Are you sure to close this dialog?')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      }
+    }
+  };
+</script>
+```
+:::
+
+### Color de fondo del título
+
+El diálogo se muestra en un estilo de color de fondo, con el título centrado.
+
+:::demo Es necesario establecer la propiedad ` Header ', la cabecera del diálogo tiene color de fondo cuando' BG ', y el encabezado del diálogo tiene color de fondo y texto centrado cuando' BG - center '. La condición previa es establecer el título.
+
+```html
+<el-button type="text" @click="dialogVisible = true">click to open the Dialog</el-button>
+
+<el-dialog
+  title="Tips"
+  :visible.sync="dialogVisible"
+  width="30%"
+  header-style="bg"
+  :before-close="handleClose">
+  <span>This is a message</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">Cancel</el-button>
+    <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+  </span>
+</el-dialog>
+<script>
+  export default {
+    data() {
+      return {
+        dialogVisible: false
+      };
+    },
+    methods: {
+      handleClose(done) {
+        this.$confirm('Are you sure to close this dialog?')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      }
+    }
+  };
+</script>
+```
+:::
+
+### Posición del botón de pie
+
+El botón de pie de diálogo se puede configurar según sea necesario, a la derecha (por defecto), en el Centro, a la izquierda.
+
+:::demo La propiedad 'footerstyle' necesita ser configurada para que el contenido del pie se muestre centrado cuando 'center' y a la izquierda cuando 'left'. El requisito previo es establecer el pie de página.
+
+```html
+<el-button type="text" @click="dialogVisible = true">click to open the Dialog</el-button>
+
+<el-dialog
+  title="Tips"
+  :visible.sync="dialogVisible"
+  width="30%"
+  header-style="divider"
+  footer-style="left"
+  :before-close="handleClose">
+  <span>This is a message</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">Cancel</el-button>
+    <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+  </span>
+</el-dialog>
+<script>
+  export default {
+    data() {
+      return {
+        dialogVisible: false
+      };
+    },
+    methods: {
+      handleClose(done) {
+        this.$confirm('Are you sure to close this dialog?')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      }
+    }
+  };
+</script>
+```
+:::
+
 ### Personalizaciones
 
 
@@ -230,6 +401,8 @@ Si la variable ligada a `visible` se gestiona en el Vuex store, el `.sync` no pu
 | before-close          | una devolución de llamada antes de que se cierre el cuadro de diálogo, y evitar cerrar el cuadro de diálogo | función(done) `done`se usa para cerrar el diálog | —                 | —           |
 | center                | si alinear el encabezado y el pie de página en el centro | boolean                                  | —                 | false       |
 | destroy-on-close      | Destruir elementos en Dialog cuando se cierra | boolean                                  | —                 | false         |
+| header-style          | Header style | string | center/divider/divider-center/bg/bg-center | — |
+| footer-style          | footer style  | string | center/left                                | — |
 
 ### Slots
 

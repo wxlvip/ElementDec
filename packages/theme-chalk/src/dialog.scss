@@ -33,6 +33,52 @@
   @include e(header) {
     padding: $--dialog-padding-primary;
     padding-bottom: 10px;
+    color: $--color-text-primary;
+
+    @include when(center) {
+      text-align: center;
+    }
+
+    @include when(divider) {
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    @include when(divider-center) {
+      text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    @include when(bg) {
+      color: #FFFFFF;
+      background: $--color-primary;
+
+      .el-dialog__close {
+        color: $--color-info;
+      }
+
+      .el-dialog__headerbtn:focus, .el-dialog__headerbtn:hover {
+        .el-dialog__close {
+          color: #FFFFFF;
+        }
+      }
+    }
+
+    @include when(bg-center) {
+      text-align: center;
+      color: #FFFFFF;
+      background: $--color-primary;
+
+      .el-dialog__close {
+        color: $--color-info;
+      }
+
+      .el-dialog__headerbtn:focus, .el-dialog__headerbtn:hover {
+        .el-dialog__close {
+          color: #FFFFFF;
+        }
+      }
+    }
+
   }
 
   @include e(headerbtn) {
@@ -60,7 +106,6 @@
   @include e(title) {
     line-height: $--dialog-font-line-height;
     font-size: $--dialog-title-font-size;
-    color: $--color-text-primary;
   }
 
   @include e(body) {
@@ -75,8 +120,18 @@
     padding-top: 10px;
     text-align: right;
     box-sizing: border-box;
-  }
 
+    @include when(center) {
+      text-align: center !important;
+    }
+
+    @include when(left) {
+      text-align: left !important;
+    }
+  }
+  @include when(center) {
+    text-align: center !important;
+  }
   // 内容居中布局
   @include m(center) {
     text-align: center;

@@ -48,6 +48,177 @@ Le Dialog ouvre un modal personnalisable.
 `before-close` ne fonctionne que quand l'utilisateur clique sur l'icône de fermeture en dehors du modal. S'il y a des boutons dans le `footer`, vous pouvez configurer `before-close` grâce à leur évènement click.
 :::
 
+### Centre du titre
+
+Le titre de la boîte de dialogue est centré.
+
+:::demo L'attribut 'header' doit être défini et l'en - tête de la boîte de dialogue est centré lorsqu'il est 'center'. La condition préalable est de définir le titre.
+
+```html
+<el-button type="text" @click="dialogVisible = true">Cliquez pour ouvrir le modal</el-button>
+
+<el-dialog
+  title="提示"
+  :visible.sync="dialogVisible"
+  width="30%"
+  header-style="center"
+  :before-close="handleClose">
+  <span>Ceci est un message</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">Annuler</el-button>
+    <el-button type="primary" @click="dialogVisible = false">Confirmer</el-button>
+  </span>
+</el-dialog>
+
+<script>
+  export default {
+    data() {
+      return {
+        dialogVisible: false
+      };
+    },
+    methods: {
+      handleClose(done) {
+        this.$confirm('Voulez-vous vraiment quitter ?')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      }
+    }
+  };
+</script>
+```
+:::
+
+### Ligne de séparation du titre
+
+Le titre de la boîte de dialogue définit la ligne de partage.
+
+:::demo L'attribut 'header' doit être défini. Lorsqu'il est 'Divider', le titre de la boîte de dialogue est affiché sous forme de ligne partagée. Lorsqu'il est 'Divider center', l'en - tête de la boîte de dialogue a une ligne partagée et le texte est centré. La condition préalable est de définir le titre.
+
+```html
+<el-button type="text" @click="dialogVisible = true">Cliquez pour ouvrir le modal</el-button>
+
+<el-dialog
+  title="提示"
+  :visible.sync="dialogVisible"
+  width="30%"
+  header-style="divider"
+  :before-close="handleClose">
+  <span>Ceci est un message</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">Annuler</el-button>
+    <el-button type="primary" @click="dialogVisible = false">Confirmer</el-button>
+  </span>
+</el-dialog>
+
+<script>
+  export default {
+    data() {
+      return {
+        dialogVisible: false
+      };
+    },
+    methods: {
+      handleClose(done) {
+        this.$confirm('Voulez-vous vraiment quitter ?')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      }
+    }
+  };
+</script>
+```
+:::
+
+### Couleur de fond du titre
+
+La boîte de dialogue est affichée dans un style de couleur de fond avec le titre centré.
+
+:::demo L'attribut 'header' doit être défini. L'en - tête de la boîte de dialogue a une couleur de fond lorsqu'il est 'BG', et l'en - tête de la boîte de dialogue a une couleur de fond et le texte est centré lorsqu'il est 'BG center'. La condition préalable est de définir le titre.
+
+```html
+<el-button type="text" @click="dialogVisible = true">Cliquez pour ouvrir le modal</el-button>
+
+<el-dialog
+  title="提示"
+  :visible.sync="dialogVisible"
+  width="30%"
+  header-style="bg"
+  :before-close="handleClose">
+  <span>Ceci est un message</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">Annuler</el-button>
+    <el-button type="primary" @click="dialogVisible = false">Confirmer</el-button>
+  </span>
+</el-dialog>
+<script>
+  export default {
+    data() {
+      return {
+        dialogVisible: false
+      };
+    },
+    methods: {
+      handleClose(done) {
+        this.$confirm('Voulez-vous vraiment quitter ?')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      }
+    }
+  };
+</script>
+```
+:::
+
+### Position du bouton footer
+
+Le bouton pied de dialogue peut être défini au besoin, à droite (par défaut), au centre et à gauche.
+
+:::demo L'attribut 'footerstyle' doit être défini. Lorsque 'center' est défini, le contenu de footer est affiché au centre et lorsque 'left' est défini, le contenu de footer est affiché à gauche. La condition préalable est de définir le pied de page.
+
+```html
+<el-button type="text" @click="dialogVisible = true">Cliquez pour ouvrir le modal</el-button>
+
+<el-dialog
+  title="提示"
+  :visible.sync="dialogVisible"
+  width="30%"
+  header-style="divider"
+  footer-style="left"
+  :before-close="handleClose">
+  <span>Ceci est un message</span> 
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">Annuler</el-button>
+    <el-button type="primary" @click="dialogVisible = false">Confirmer</el-button>
+  </span>
+</el-dialog>
+<script>
+  export default {
+    data() {
+      return {
+        dialogVisible: false
+      };
+    },
+    methods: {
+      handleClose(done) {
+        this.$confirm('Voulez-vous vraiment quitter ?')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      }
+    }
+  };
+</script>
+```
+:::
+
 ### Personalisation
 
 Le contenu du modal peut être n'importe quoi, tableau ou formulaire compris.
@@ -225,6 +396,8 @@ Si la variable liée à `visible` est gérée dans Vuex, le modificateur `.sync`
 | before-close | Callback avant la fermeture du Dialog. | function(done)，done est utilisé pour fermer le Dialog. | — | — |
 | center | Si le header et le footer doivent être centrés. | boolean | — | false |
 | destroy-on-close | Destroy elements in Dialog when closed   | boolean | — | false |
+| header-style          | Style d'en - tête     | string | center/divider/divider-center/bg/bg-center | — |
+| footer-style          | Style de pied  | string | center/left                                | — |
 
 ### Slot
 
