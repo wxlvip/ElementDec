@@ -14,10 +14,10 @@
     ></i>
       {{title}}
     </p>
-    <div class="el-popconfirm__action">
-      <el-button 
-        size="mini" 
-        :type="cancelButtonType" 
+    <div :class="['el-popconfirm__action', footerStyle ? `is-${footerStyle}` : '']">
+      <el-button
+        size="mini"
+        :type="cancelButtonType"
         @click="cancel"
       >
         {{ displayCancelButtonText }}
@@ -71,6 +71,10 @@ export default {
     hideIcon: {
       type: Boolean,
       default: false
+    },
+    footerStyle: {
+      type: String,
+      default: ''
     }
   },
   components: {

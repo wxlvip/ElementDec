@@ -10,7 +10,15 @@
     margin-right: 5px;
   }
   @include e(action) {
-    text-align: right; 
-    margin: 0
+    text-align: right;
+    margin: 0;
+
+    @include when(center){
+      text-align: center;
+    }
+
+    @include when(left){
+      text-align: left;
+    }
   }
 }

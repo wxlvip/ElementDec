@@ -17,6 +17,22 @@ Popconfirm 的属性与 Popover 很类似，因此对于重复属性，请参考
 ````
 :::
 
+### 操作按钮位置
+
+可以在 Popconfirm 中通过 `footerStyle` 设置 footer 处按钮居中(center) 或 居左(left)。
+:::demo
+```html
+<template>
+<el-popconfirm
+  title="这是一段内容确定删除吗？"
+  footer-style="center"
+>
+  <el-button slot="reference">删除</el-button>
+</el-popconfirm>
+</template>
+```
+:::
+
 ### 自定义
 
 可以在 Popconfirm 中自定义内容。
@@ -37,16 +53,17 @@ Popconfirm 的属性与 Popover 很类似，因此对于重复属性，请参考
 :::
 
 ### Attributes
-| 参数               | 说明                                                     | 类型              | 可选值      | 默认值 |
-|--------------------|----------------------------------------------------------|-------------------|-------------|--------|
-|  title              | 标题 | String | — | — |
-|  confirm-button-text              | 确认按钮文字 | String | — | — |
-|  cancel-button-text              | 取消按钮文字 | String | — | — |
-|  confirm-button-type              | 确认按钮类型 | String | — | Primary |
-|  cancel-button-type              | 取消按钮类型 | String | — | Text |
-|  icon              | Icon | String | — | el-icon-question |
-|  icon-color              | Icon 颜色 | String | — | #f90 |
-|  hide-icon              | 是否隐藏 Icon | Boolean | — | false |
+| 参数                  | 说明        | 类型      | 可选值         | 默认值 |
+|---------------------|-----------|---------|-------------|--------|
+| title               | 标题        | String  | —           | — |
+| confirm-button-text | 确认按钮文字    | String  | —           | — |
+| cancel-button-text  | 取消按钮文字    | String  | —           | — |
+| confirm-button-type | 确认按钮类型    | String  | —           | Primary |
+| cancel-button-type  | 取消按钮类型    | String  | —           | Text |
+| icon                | Icon      | String  | —           | el-icon-question |
+| icon-color          | Icon 颜色   | String  | —           | #f90 |
+| hide-icon           | 是否隐藏 Icon | Boolean | —           | false |
+| footer-style        | 按钮位置      | String  | center/left | — |
 
 ### Slot
 | 参数 | 说明 |

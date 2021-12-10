@@ -18,6 +18,23 @@ Popconfirm is similar to Popover. So for some duplicated attributes, please refe
 ````
 :::
 
+### Operation button position
+
+You can use 'footerstyle' in popconfirm to set the button center or left at the footer.
+
+:::demo
+```html
+<template>
+<el-popconfirm
+  title="Are you sure to delete this?"
+  footer-style="center"
+>
+  <el-button slot="reference">Delete</el-button>
+</el-popconfirm>
+</template>
+```
+:::
+
 ### Customise
 You can customise Popconfirm like:
 :::demo
@@ -47,6 +64,7 @@ You can customise Popconfirm like:
 |  icon              | Icon | String | — | el-icon-question |
 |  icon-color              | Icon color | String | — | #f90 |
 |  hide-icon              | is hide Icon | Boolean | — | false |
+| footer-style        | Button position      | String  | center/left | — |
 
 ### Slot
 | Name | Description |
