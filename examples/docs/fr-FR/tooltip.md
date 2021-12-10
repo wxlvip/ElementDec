@@ -112,6 +112,21 @@ Tooltip a deux thèmes: `dark` et `light`。
 ```
 :::
 
+### Style
+
+Les infobulles ont deux styles: rectangulaire et circulaire。
+
+:::demo Définissez 'Round' pour modifier le thème, la valeur par défaut est 'rectangle'.
+```html
+<el-tooltip content="Top center" placement="top">
+  <el-button>Default</el-button>
+</el-tooltip>
+<el-tooltip content="Bottom center" placement="bottom" round>
+  <el-button>Round</el-button>
+</el-tooltip>
+```
+:::
+
 ### Plus de contenu
 
 Vous pouvez afficher plus de lignes et formater leur contenu.

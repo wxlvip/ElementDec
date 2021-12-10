@@ -52,6 +52,10 @@ export default {
     tabindex: {
       type: Number,
       default: 0
+    },
+    round: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -90,7 +94,7 @@ export default {
             aria-hidden={ (this.disabled || !this.showPopper) ? 'true' : 'false' }
             v-show={!this.disabled && this.showPopper}
             class={
-              ['el-tooltip__popper', 'is-' + this.effect, this.popperClass]
+              ['el-tooltip__popper', 'is-' + this.effect, this.round ? 'is-round' : '', this.popperClass]
             }>
             { this.$slots.content || this.content }
           </div>

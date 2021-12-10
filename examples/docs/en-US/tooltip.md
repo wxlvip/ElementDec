@@ -112,6 +112,21 @@ Tooltip has two themes: `dark` and `light`。
 ```
 :::
 
+### Style
+
+Tooltip has two Style: `rectangle` and `round`。
+
+:::demo Set `round` to modify theme, and the default value is `rectangle`.
+```html
+<el-tooltip content="Top center" placement="top">
+  <el-button>Default</el-button>
+</el-tooltip>
+<el-tooltip content="Bottom center" placement="bottom" round>
+  <el-button>Round</el-button>
+</el-tooltip>
+```
+:::
+
 ### More Content
 
 Display multiple lines of text and set their format.

@@ -109,6 +109,22 @@ Tooltip 组件提供了两个不同的主题：`dark`和`light`。
 ```
 :::
 
+### 样式类型
+
+Tooltip 组件提供了两种不同的样式：矩形 和 圆角`round`。
+
+
+:::demo 通过设置`round`属性来改变样式风格，默认为 矩形。
+```html
+<el-tooltip content="Top center" placement="top">
+  <el-button>Default</el-button>
+</el-tooltip>
+<el-tooltip content="Bottom center" placement="bottom" effect="light" round>
+  <el-button>Round</el-button>
+</el-tooltip>
+```
+:::
+
 ### 更多 Content
 
 展示多行文本或者是设置文本内容的格式
