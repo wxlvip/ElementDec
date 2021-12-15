@@ -14,8 +14,21 @@
         :id="tooltipId"
         :aria-hidden="(disabled || !showPopper) ? 'true' : 'false'"
       >
-        <div class="el-popover__title" v-if="title" v-text="title"></div>
-        <slot>{{ content }}</slot>
+        <div :class="['el-popover__header', headerStyle ? `is-${headerStyle}` : '']" v-if="title">
+          <slot name="title">
+            <span class="el-popover__title" v-text="title"></span>
+          </slot>
+          <!-- 关闭按钮 -->
+          <button
+              type="button"
+              class="el-popover__headerbtn"
+              aria-label="Close"
+              @click="doClose">
+            <i class="el-dialog__close el-icon el-icon-close"></i>
+          </button>
+        </div>
+<!--        <div class="el-popover__title" v-if="title" v-text="title"></div>-->
+        <slot><div class="el-popover__content">{{ content }}</div></slot>
       </div>
     </transition>
     <span class="el-popover__reference-wrapper" ref="wrapper" >
@@ -68,6 +81,10 @@ export default {
     tabindex: {
       type: Number,
       default: 0
+    },
+    headerStyle: {
+      type: String,
+      default: ''
     }
   },
 
@@ -215,6 +232,13 @@ export default {
     cleanup() {
       if (this.openDelay || this.closeDelay) {
         clearTimeout(this._timer);
+      }
+    },
+    handleClose() {
+      if (typeof this.beforeClose === 'function') {
+        this.beforeClose(this.hide);
+      } else {
+        this.hide();
       }
     }
   },

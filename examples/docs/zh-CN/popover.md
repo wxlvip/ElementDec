@@ -17,7 +17,6 @@ Popover 的属性与 Tooltip 很类似，它们都是基于`Vue-popper`开发的
 
   <el-popover
     placement="bottom"
-    title="标题"
     width="200"
     trigger="click"
     content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
@@ -42,6 +41,35 @@ Popover 的属性与 Tooltip 很类似，它们都是基于`Vue-popper`开发的
     content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
     v-model="visible">
     <el-button slot="reference" @click="visible = !visible">手动激活</el-button>
+  </el-popover>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        visible: false
+      };
+    }
+  };
+</script>
+```
+:::
+
+### Header 设置背景色
+为 Popover 的 Header 设置背景色。
+
+:::demo 使用 `headerStyle`属性设置 header 样式, `bg` 只设置背景色, `bg-center` 设置背景色及标题居中。
+```html
+<template>
+  <el-popover
+    placement="top"
+    title="标题"
+    width="200"
+    trigger="click"
+    header-style="bg"
+    content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
+    <el-button slot="reference">click 激活</el-button>
   </el-popover>
 </template>
 
@@ -134,23 +162,24 @@ Popover 的属性与 Tooltip 很类似，它们都是基于`Vue-popper`开发的
 :::
 
 ### Attributes
-| 参数               | 说明                                                     | 类型              | 可选值      | 默认值 |
-|--------------------|----------------------------------------------------------|-------------------|-------------|--------|
-| trigger | 触发方式 | String  | click/focus/hover/manual |    click    |
-|  title              | 标题 | String | — | — |
-|  content        |  显示的内容，也可以通过 `slot` 传入 DOM   | String            | — | — |
-|  width        |  宽度  | String, Number            | — | 最小宽度 150px |
-|  placement        |  出现位置  | String | top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end |  bottom |
-|  disabled       |  Popover 是否可用  | Boolean           | — |  false |
-|  value / v-model        |  状态是否可见  | Boolean           | — |  false |
-|  offset        |  出现位置的偏移量  | Number           | — |  0 |
-|  transition     |  定义渐变动画      | String             | — | fade-in-linear |
-|  visible-arrow   |  是否显示 Tooltip 箭头，更多参数可见[Vue-popper](https://github.com/element-component/vue-popper) | Boolean | — | true |
-|  popper-options        | [popper.js](https://popper.js.org/documentation.html) 的参数 | Object            | 参考 [popper.js](https://popper.js.org/documentation.html) 文档 | `{ boundariesElement: 'body', gpuAcceleration: false }` |
-| popper-class | 为 popper 添加类名 | String | — | — |
-| open-delay | 触发方式为 hover 时的显示延迟，单位为毫秒 | Number | — | — |
-| close-delay | 触发方式为 hover 时的隐藏延迟，单位为毫秒 | number | — | 200 |
-| tabindex   | Popover 组件的 [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex) | number | — | 0 |
+| 参数               | 说明                                                                                                                                  | 类型             | 可选值                                                                                                       | 默认值                                                     |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------------|----------------|-----------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| trigger | 触发方式                                                                                                                                | String         | click/focus/hover/manual                                                                                  | click                                                   |
+|  title              | 标题                                                                                                                                  | String         | —                                                                                                         | —                                                       |
+|  content        | 显示的内容，也可以通过 `slot` 传入 DOM                                                                                                           | String         | —                                                                                                         | —                                                       |
+|  width        | 宽度                                                                                                                                  | String, Number | —                                                                                                         | 最小宽度 150px                                              |
+|  placement        | 出现位置                                                                                                                                | String         | top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end | bottom                                                  |
+|  disabled       | Popover 是否可用                                                                                                                        | Boolean        | —                                                                                                         | false                                                   |
+|  value / v-model        | 状态是否可见                                                                                                                              | Boolean        | —                                                                                                         | false                                                   |
+|  offset        | 出现位置的偏移量                                                                                                                            | Number         | —                                                                                                         | 0                                                       |
+|  transition     | 定义渐变动画                                                                                                                              | String         | —                                                                                                         | fade-in-linear                                          |
+|  visible-arrow   | 是否显示 Tooltip 箭头，更多参数可见[Vue-popper](https://github.com/element-component/vue-popper)                                                 | Boolean        | —                                                                                                         | true                                                    |
+|  popper-options        | [popper.js](https://popper.js.org/documentation.html) 的参数                                                                           | Object         | 参考 [popper.js](https://popper.js.org/documentation.html) 文档                                               | `{ boundariesElement: 'body', gpuAcceleration: false }` |
+| popper-class | 为 popper 添加类名                                                                                                                       | String         | —                                                                                                         | —                                                       |
+| open-delay | 触发方式为 hover 时的显示延迟，单位为毫秒                                                                                                            | Number         | —                                                                                                         | —                                                       |
+| close-delay | 触发方式为 hover 时的隐藏延迟，单位为毫秒                                                                                                            | number         | —                                                                                                         | 200                                                     |
+| tabindex   | Popover 组件的 [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex)                                | number         | —                                                                                                         | 0                                                       |
+| headerStyle   | header 样式   | String  | bg/bg-center | -  |
 
 ### Slot
 | 参数 | 说明 |

@@ -19,7 +19,6 @@ Similaire à Tooltip, Popover est aussi construit avec `Vue-popper`. Certains at
 
   <el-popover
     placement="bottom"
-    title="Title"
     width="200"
     trigger="click"
     content="this is content, this is content, this is content">
@@ -44,6 +43,36 @@ Similaire à Tooltip, Popover est aussi construit avec `Vue-popper`. Certains at
     content="this is content, this is content, this is content"
     v-model="visible">
     <el-button slot="reference" @click="visible = !visible">S'active manuellement</el-button>
+  </el-popover>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        visible: false
+      };
+    }
+  };
+</script>
+```
+:::
+
+### Couleur de fond de l'en - tête
+
+Définit la couleur de fond de l'en - tête de popover.
+
+:::demo Utilisez l'attribut 'headerstyle' pour définir le style de l'en - tête, ` BG 'pour définir la couleur de fond seulement, ` BG center' pour définir la couleur de fond et le Centre du titre.
+```html
+<template>
+  <el-popover
+    placement="bottom"
+    title="Title"
+    width="200"
+    trigger="click"
+    header-style="bg"
+    content="this is content, this is content, this is content">
+    <el-button slot="reference">S'active manuellement</el-button>
   </el-popover>
 </template>
 
@@ -155,6 +184,7 @@ Vous pouvez aussi imbriquer des opérations. Procéder ainsi est plus léger que
 | open-delay | Délai d'affichage, lorsque `trigger` est 'hover', en millisecondes. | number | — | — |
 | close-delay | delay before disappearing when `trigger` is hover, in milliseconds | number | — | 200 |
 | tabindex   | [tabindex](https://developer.mozilla.org/fr/docs/Web/HTML/Attributs_universels/tabindex) de Popover | number | — | 0 |
+| headerStyle   | Style d'en - tête   | String  | bg/bg-center | -  |
 
 ### Slot
 
