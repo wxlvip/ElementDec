@@ -79,7 +79,22 @@ Element-2.15.7
 ├──examples：文档目录，组件相关示例 demo,这是一个完整独立的Vue项目\
 │   ├──components:主题及主题编辑器相关页面
 │   │   ├──theme // 主题页面相关
+│   │   │   ├──loader
+│   │   │   ├──color.js
 │   │   ├──theme-configurator // 主题编辑器相关
+│   │   │   ├──editor
+│   │   │   ├──utils
+│   │   │   ├──action.vue
+│   │   │   ├──index.vue
+│   │   │   ├──main.vue
+│   │   │   └──shortcut.vue
+│   │   ├──demo-block.vue
+│   │   ├──footer.vue
+│   │   ├──footer-nav.vue
+│   │   ├──header.vue
+│   │   ├──search.vue
+│   │   ├──side-nav.vue
+│   │   └──theme-picker.vue 
 │   ├──docs:每一个md文档，分别对应着官网组件的展示页面 修改官网组件页面就在该目录下修改，通过项目组编写的 md-loader 进行转换成 vue 文件
 ├──lib： 构建后生成的文件，发布到npm包
 ├──packages：组件源码和组件样式文件
@@ -230,6 +245,7 @@ Vue.component(HelloWorld.name, HelloWorld);
 export default HelloWorld;
 ```
 src/main.vue 真实项目中写组件一定要构思和确定好，要可以扩展和新增功能，因为后期改动的成本很大，所以 涉及的三大块 props、event 和 slot 要认真思考
+其中name跟使用组件有关如果name为 `ElHelloWorld` 则在页面中使用组件的方式为 `<el-hello-world></el-hello-world>`,如果name 为 `WxlHeader` 则使用组件时为`<wxl-header></wxl-header>`
 ```vue
 <template>
   <div class="el-hello-world">
@@ -421,7 +437,41 @@ element的样式：
 
 ### 主题
 
-`http://localhost:8085/#/zh-CN/theme` 主题页面模板所在路径为：`examples/pages/zh-CN/theme.vue`，通过分析该页面可知，主题页面遍历的主题card模板所在路径为：`examples/components/theme/theme-card.vue`，而页面展示的主题数据配置文件路径在 `examples/components/theme/theme-list.js`
+主题主页所在路径为：`examples/pages/zh-CN/theme.vue`，访问路径为 `http://localhost:8085/#/zh-CN/theme`\
+单个主题编辑页面：`examples/pages/zh-CN/theme-preview.vue` 访问路径 `http://localhost:8085/#/zh-CN/theme/preview`，该页面由以下几部分组成：
+- `examples/components/theme/basic-tokens-preview.vue` 页面左侧区域 第一屏组件展示包括 Color && Typography
+- `examples/components/theme/components-preview.vue` 页面左侧区域 第二屏及更多组件展示
+- `examples/components/theme-configurator/index.vue` 页面右侧区域-属性配置器
+
+```
+components:主题及主题编辑器相关页面
+├──theme // 主题页面相关
+│   ├──loader
+│   ├──basic-tokens-preview.vue 页面左侧区域 第一屏组件展示包括 Color && Typography
+│   ├──color.js
+│   ├──components-preview.vue 页面左侧区域 第二屏及更多组件展示
+│   ├──constant.js
+│   ├──localstorage.js
+│   ├──theme-card.vue 主题页面遍历的 主题card 模板，如:官方主题、我的主题
+│   ├──theme-list.js
+│   └──utils.js
+├──theme-configurator // 主题编辑器相关
+│   ├──editor
+│   ├──utils
+│   ├──action.vue 属性编辑器头部工具栏 包括撤销、重做、重置、下载、选择组件
+│   ├──index.vue 页面右侧区域-属性配置器
+│   ├──main.vue
+│   └──shortcut.vue
+├──demo-block.vue
+├──footer.vue
+├──footer-nav.vue
+├──header.vue
+├──search.vue
+├──side-nav.vue
+└──theme-picker.vue 
+```
+
+通过分析该页面可知，主题页面遍历的主题card模板所在路径为：`examples/components/theme/theme-card.vue`，而页面展示的主题数据配置文件路径在 `examples/components/theme/theme-list.js`
 
 `examples/components/theme/loader/api.js` 配置主题 or 获取主题 同服务器交互文件
 `examples/components/theme/loader/ajax.js` 官方封装的 Ajax 用于主题的配置和获取
@@ -429,7 +479,7 @@ element的样式：
 因为主题配置，官网是通过服务器请求完成的，所以本地下载的源码是不能使用的，要自己建立服务器或者在前端增加这部分功能。
 
 页面编辑器\
-`examples/components/theme-configurator/index.vue` 主题配置页面,样式编辑器触发的方法为 userConfigChange 可以在该方法中获取到变动的数据的键值对，并 调用 updateVariable 接口方法
+`examples/components/theme-configurator/index.vue` 主题配置页面,默认配置也在该页面中，样式编辑器触发的方法为 userConfigChange 可以在该方法中获取到变动的数据的键值对，并 调用 updateVariable 接口方法
 
 `examples/components/theme-configurator/main.vue` 左侧区域
 
@@ -438,6 +488,7 @@ element的样式：
 `examples/components/theme/loader/index.vue` updateVars 提交变更的配置值作为参数并请求返回改变后的css样式值(即新的主题)，用于改变页面样式
 
 `examples/components/theme/loader/index.vue` 下载调用的方法也在该页面
+
 
 服务器部分？
 
@@ -813,6 +864,15 @@ lib/utils/vdom.js
 ```
 
 打包好文件后，按照上面目录将文件复制到 npm 发布文件夹下即可
+
+## 部署文档
+使用 `yarn deploy:build` 命令进行编译文档
+`"deploy:build": "npm run build:file && cross-env NODE_ENV=production webpack --config build/webpack.demo.js && echo element.eleme.io>>examples/element-ui/CNAME"`
+编译成功后可以部署在 Nginx 服务器上进行访问，生成的文档涉及到一些网络资源可以下载到本地进行部署 https://blog.csdn.net/txyzqc/article/details/109700596
+- `npm run build:file` 该指令主要用来自动化生成一些文件,详情见上面说明
+- `cross-env NODE_ENV=production webpack --config build/webpack.demo.js` 标准的webpack配置文件。这个其实是文档构建的webpack配置
+- `echo element.eleme.io>>examples/element-ui/CNAME` ？不明白想做什么？输出目录是examples/element-ui
+
 
 
 ## 其他
