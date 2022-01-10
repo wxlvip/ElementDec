@@ -527,17 +527,6 @@ https://segmentfault.com/a/1190000009762198#articleHeader2
 3. 把关键词再换回刚刚生成的相应的颜色值
 4. 直接在页面上加 style 标签，把生成的样式填进去
 
-
-
-
-
-
-
-
-
-
-
-
 ## 组件
 
 1. 修改组件安装前缀
@@ -584,6 +573,18 @@ export default {
 ```
 
 直接执行 `npm run dist` 命令会卡在 webpack 打包这一步执行不下去，将命令拆分开，单独执行就可以。该命令生成的文件均在根目录下的 `lib` 文件夹下
+
+```shell
+npm run clean && npm run build:file && npm run lint
+
+webpack --config build/webpack.conf.js
+
+webpack --config build/webpack.common.js
+
+webpack --config build/webpack.component.js
+
+npm run build:utils && npm run build:umd && npm run build:theme
+```
 
 - `npm run clean` 清空 lib 文件夹
 - `npm run build:file`
@@ -873,8 +874,11 @@ lib/utils/vdom.js
 - `cross-env NODE_ENV=production webpack --config build/webpack.demo.js` 标准的webpack配置文件。这个其实是文档构建的webpack配置
 - `echo element.eleme.io>>examples/element-ui/CNAME` ？不明白想做什么？输出目录是examples/element-ui
 
-
-
+16.13.0 (Currently using 64-bit executable)
+14.17.6
+https://github.com/coreybutler/nvm-windows/releases/
+Git-2.34.1-64-bit
+https://git-scm.com/download/win
 ## 其他
 - Element UI是面向开发人员、设计人员和产品经理的基于Vue 2.0的组件库。\
 - 需要node.js4+，因为使用yarn锁定以来版本，所以这里官方推荐使用yarn进行包管理，而不是npm
