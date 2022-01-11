@@ -20,7 +20,7 @@
     position: relative;
   }
 
-  // dashed (ÆÆÕÛÏßÊ½±ß¿ò)
+  // dashed (ç ´æŠ˜çº¿å¼è¾¹æ¡†)
   @include when(dashed) {
     border-width: 1px 0 0 0;
     border-color: $--border-color-base;
@@ -28,7 +28,7 @@
     background: transparent;
   }
 
-  //dotted (µãÏßÊ½±ß¿ò)
+  //dotted (ç‚¹çº¿å¼è¾¹æ¡†)
   //@include when(dotted) {
   //  border-color: $--border-color-base;
   //  border-width: 1px 0 0 0;
@@ -37,7 +37,7 @@
   //  background: transparent;
   //}
 
-  // double (Ë«ÏßÊ½±ß¿ò)
+  // double (åŒçº¿å¼è¾¹æ¡†)
   //@include when(double) {
   //  border-color: $--border-color-base;
   //  border-width: 1px 0 0 0;
@@ -46,7 +46,7 @@
   //  background: transparent;
   //}
 
-  // groove (²ÛÏßÊ½±ß¿ò)
+  // groove (æ§½çº¿å¼è¾¹æ¡†)
   //@include when(groove) {
   //  border-color: $--border-color-base;
   //  border-width: 1px 0 0 0;
@@ -55,7 +55,7 @@
   //  background: transparent;
   //}
 
-  // ridge(¼¹ÏßÊ½±ß¿ò)
+  // ridge(è„Šçº¿å¼è¾¹æ¡†)
   //@include when(ridge) {
   //  border-color: $--border-color-base;
   //  border-width: 1px 0 0 0;
@@ -64,7 +64,7 @@
   //  background: transparent;
   //}
 
-  // inset (ÄÚÇ¶Ğ§¹ûµÄ±ß¿ò)
+  // inset (å†…åµŒæ•ˆæœçš„è¾¹æ¡†)
   //@include when(inset) {
   //  border-color: $--border-color-base;
   //  border-width: 1px 0 0 0;
@@ -73,7 +73,7 @@
   //  background: transparent;
   //}
 
-  // outset (Í»ÆğĞ§¹ûµÄ±ß¿ò)
+  // outset (çªèµ·æ•ˆæœçš„è¾¹æ¡†)
   //@include when(outset) {
   //  border-color: $--border-color-base;
   //  border-width: 1px 0 0 0;
